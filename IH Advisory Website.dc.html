@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>IH Advisory | Strategic Advisory & Business Consultant, Northern Territory</title>
+<meta name="description" content="IH Advisory is an Indigenous and Veteran owned Northern Territory consultancy providing strategic advisory, HR consultancy, workforce strategy, leadership development and workplace investigations across Australia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#FFFFFF;color:#1B2635;font-family:'Open Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#153B68;text-decoration:none}
+a:hover{color:#7A6944}
+::selection{background:#B09A67;color:#fff}
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;background:#FFFFFF">
+
+<!-- NAV -->
+<header style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.97);backdrop-filter:blur(8px);border-bottom:1px solid {{ navBorder }};box-shadow:{{ navShadow }};transition:box-shadow .3s">
+  <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px);height:84px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <a href="#" onClick="{{ goHome }}" aria-label="IH Advisory home" style="display:flex;align-items:center">
+      <img src="./assets/ih-logo.png" alt="IH Advisory — Strategy, Culture, Capability" style="height:46px;width:auto;display:block">
+    </a>
+    <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+      <nav aria-label="Primary" style="display:flex;align-items:center;gap:32px">
+        <a href="#" onClick="{{ goHome }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:14px;letter-spacing:.02em;color:#153B68;padding:8px 0;border-bottom:2px solid {{ active.home }}" style-hover="color:#7A6944">Home</a>
+        <a href="#" onClick="{{ goAbout }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:14px;letter-spacing:.02em;color:#153B68;padding:8px 0;border-bottom:2px solid {{ active.about }}" style-hover="color:#7A6944">About</a>
+        <div onMouseEnter="{{ openSub }}" onMouseLeave="{{ closeSub }}" style="position:relative;display:flex;align-items:center;height:84px">
+          <a href="#" onClick="{{ goServices }}" aria-haspopup="true" aria-expanded="{{ subOpen }}" onFocus="{{ openSub }}" style="display:flex;align-items:center;gap:8px;font-family:Montserrat,sans-serif;font-weight:600;font-size:14px;letter-spacing:.02em;color:#153B68;padding:8px 0;border-bottom:2px solid {{ active.services }}" style-hover="color:#7A6944">Services <span aria-hidden="true" style="display:block;width:6px;height:6px;border-right:1.5px solid #B09A67;border-bottom:1.5px solid #B09A67;transform:rotate(45deg);margin-top:-4px"></span></a>
+          <sc-if value="{{ subOpen }}" hint-placeholder-val="{{ false }}">
+            <div role="menu" style="position:absolute;top:84px;left:-28px;width:340px;background:#FFFFFF;border-top:3px solid #B09A67;box-shadow:0 28px 56px -20px rgba(15,42,74,0.35);padding:12px 0">
+              <sc-for list="{{ services }}" as="s" hint-placeholder-count="5">
+                <a href="#" role="menuitem" onClick="{{ s.go }}" style="display:block;padding:14px 28px;color:#153B68;background:{{ s.navBg }}" style-hover="background:#F8F8F6;color:#7A6944">
+                  <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:14.5px">{{ s.title }}</span>
+                </a>
+              </sc-for>
+              <a href="#" onClick="{{ goServices }}" style="display:block;margin:8px 28px 4px;padding-top:14px;border-top:1px solid #ECE8DE;font-family:Montserrat,sans-serif;font-weight:600;font-size:13.5px;color:#153B68" style-hover="color:#7A6944">View all services →</a>
+            </div>
+          </sc-if>
+        </div>
+        <a href="#" onClick="{{ goPartners }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:14px;letter-spacing:.02em;color:#153B68;padding:8px 0;border-bottom:2px solid {{ active.partners }}" style-hover="color:#7A6944">Partners</a>
+        <a href="#" onClick="{{ goInsights }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:14px;letter-spacing:.02em;color:#153B68;padding:8px 0;border-bottom:2px solid {{ active.insights }}" style-hover="color:#7A6944">Insights</a>
+        <a href="#" onClick="{{ goContact }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:14px;letter-spacing:.02em;color:#153B68;padding:8px 0;border-bottom:2px solid {{ active.contact }}" style-hover="color:#7A6944">Contact</a>
+        <a href="#" onClick="{{ goContact }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:14px;color:#FFFFFF;background:#153B68;padding:14px 24px;border-radius:2px;transition:background .2s" style-hover="background:#0F2A4A;color:#FFFFFF">Book a Consultation</a>
+      </nav>
+    </sc-if>
+    <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ toggleMenu }}" aria-label="Open menu" aria-expanded="{{ menuOpen }}" style="width:48px;height:48px;border:1px solid #DCD6C6;background:#fff;border-radius:2px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer">
+        <span style="display:block;width:20px;height:2px;background:#153B68"></span>
+        <span style="display:block;width:20px;height:2px;background:#153B68"></span>
+        <span style="display:block;width:14px;height:2px;background:#B09A67;margin-left:6px"></span>
+      </button>
+    </sc-if>
+  </div>
+  <sc-if value="{{ showMobileMenu }}" hint-placeholder-val="{{ false }}">
+    <nav aria-label="Mobile" style="border-top:1px solid #ECE8DE;background:#fff;padding:12px clamp(20px,4vw,48px) 24px;display:flex;flex-direction:column">
+      <a href="#" onClick="{{ goHome }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:#153B68;padding:16px 0;border-bottom:1px solid #F0EDE5">Home</a>
+      <a href="#" onClick="{{ goAbout }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:#153B68;padding:16px 0;border-bottom:1px solid #F0EDE5">About</a>
+      <a href="#" onClick="{{ goServices }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:#153B68;padding:16px 0 10px">Services</a>
+      <div style="display:flex;flex-direction:column;padding:0 0 12px 16px;border-bottom:1px solid #F0EDE5;border-left:2px solid #B09A67;margin-bottom:0">
+        <sc-for list="{{ services }}" as="s" hint-placeholder-count="5">
+          <a href="#" onClick="{{ s.go }}" style="font-size:15px;color:#2C3848;padding:11px 0" style-hover="color:#7A6944">{{ s.title }}</a>
+        </sc-for>
+      </div>
+      <a href="#" onClick="{{ goPartners }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:#153B68;padding:16px 0;border-bottom:1px solid #F0EDE5">Partners</a>
+      <a href="#" onClick="{{ goInsights }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:#153B68;padding:16px 0;border-bottom:1px solid #F0EDE5">Insights</a>
+      <a href="#" onClick="{{ goContact }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;color:#153B68;padding:16px 0">Contact</a>
+      <a href="#" onClick="{{ goContact }}" style="margin-top:12px;text-align:center;font-family:Montserrat,sans-serif;font-weight:600;font-size:15px;color:#fff;background:#153B68;padding:16px 24px;border-radius:2px">Book a Consultation</a>
+    </nav>
+  </sc-if>
+</header>
+
+<main style="flex:1">
+
+<!-- ================= HOME ================= -->
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+
+  <!-- Hero: full-bleed -->
+  <sc-if value="{{ heroFull }}" hint-placeholder-val="{{ true }}">
+    <section data-screen-label="Home — Hero" aria-label="Introduction" style="position:relative;min-height:clamp(640px,88vh,880px);display:flex;align-items:center;overflow:hidden;background:#0F2A4A">
+      <div style="position:absolute;inset:0">
+        <image-slot id="hero-image" src="https://picsum.photos/seed/ih-boardroom/1920/1200" shape="rect" placeholder="Hero photo — executive team in strategic planning session (authentic Australian / NT setting)"></image-slot>
+      </div>
+      <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(12,33,59,0.95) 0%,rgba(21,59,104,0.86) 42%,rgba(21,59,104,0.45) 75%,rgba(21,59,104,0.2) 100%)"></div>
+      <div style="position:relative;width:100%;max-width:1280px;margin:0 auto;padding:120px clamp(20px,4vw,48px) 160px;pointer-events:none">
+        <div style="max-width:720px;pointer-events:auto">
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:32px">
+            <span style="display:block;width:40px;height:1px;background:#B09A67"></span>
+            <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#D4C39C">Northern Territory · Indigenous &amp; Veteran Owned</span>
+          </div>
+          <h1 style="margin:0;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(42px,6.2vw,80px);line-height:1.04;letter-spacing:-.02em;color:#FFFFFF">Strategic Advice.<br>Practical Expertise.<br><span style="color:#C9B68A">Real Results.</span></h1>
+          <p style="margin:32px 0 0;max-width:580px;font-size:clamp(17px,1.4vw,19px);line-height:1.65;color:rgba(255,255,255,0.9);text-wrap:pretty">IH Advisory partners with organisations to navigate complexity, strengthen leadership, optimise performance, and create sustainable outcomes through practical and strategic solutions.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:44px">
+            <a href="#" onClick="{{ goContact }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:15px;color:#0F2A4A;background:#B09A67;padding:18px 30px;border-radius:2px;transition:background .2s" style-hover="background:#C9B68A;color:#0F2A4A">Book a Consultation</a>
+            <a href="#services" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:15px;color:#FFFFFF;border:1px solid rgba(255,255,255,0.5);padding:17px 30px;border-radius:2px;transition:all .2s" style-hover="background:rgba(255,255,255,0.1);border-color:#FFFFFF;color:#FFFFFF">Explore Services</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- Hero: split -->
+  <sc-if value="{{ heroSplit }}" hint-placeholder-val="{{ false }}">
+    <section data-screen-label="Home — Hero" aria-label="Introduction" style="background:#F8F8F6">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(56px,8vw,112px) clamp(20px,4vw,48px) 160px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:clamp(40px,6vw,88px);align-items:center">
+        <div>
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:28px">
+            <span style="display:block;width:40px;height:1px;background:#B09A67"></span>
+            <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">Northern Territory · Indigenous &amp; Veteran Owned</span>
+          </div>
+          <h1 style="margin:0;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(40px,5.4vw,72px);line-height:1.05;letter-spacing:-.02em;color:#153B68">Strategic Advice.<br>Practical Expertise.<br><span style="color:#7A6944">Real Results.</span></h1>
+          <p style="margin:28px 0 0;max-width:540px;font-size:18px;line-height:1.65;color:#3E4A5C;text-wrap:pretty">IH Advisory partners with organisations to navigate complexity, strengthen leadership, optimise performance, and create sustainable outcomes through practical and strategic solutions.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:40px">
+            <a href="#" onClick="{{ goContact }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:15px;color:#fff;background:#153B68;padding:18px 30px;border-radius:2px" style-hover="background:#0F2A4A;color:#fff">Book a Consultation</a>
+            <a href="#services" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:15px;color:#153B68;border:1px solid #153B68;padding:17px 30px;border-radius:2px" style-hover="background:#153B68;color:#fff">Explore Services</a>
+          </div>
+        </div>
+        <div style="position:relative;aspect-ratio:4/5;max-height:640px;width:100%">
+          <image-slot id="hero-image-split" src="https://picsum.photos/seed/ih-boardroom/1000/1250" shape="rect" placeholder="Hero photo — leadership discussion in boardroom"></image-slot>
+          <div style="position:absolute;left:-1px;bottom:-1px;width:38%;height:6px;background:#B09A67;pointer-events:none"></div>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- Trust indicators -->
+  <section aria-label="Why organisations trust us" style="position:relative;z-index:2;max-width:1280px;margin:-88px auto 0;padding:0 clamp(20px,4vw,48px)">
+    <div data-reveal="1" style="background:#FFFFFF;box-shadow:0 24px 60px -24px rgba(15,42,74,0.28);border-top:3px solid #B09A67;display:grid;grid-template-columns:{{ trustCols }}">
+      <sc-for list="{{ trust }}" as="t" hint-placeholder-count="4">
+        <div style="padding:36px 32px;border-right:1px solid #EFEBE2;border-bottom:1px solid #EFEBE2;margin:0 0 -1px">
+          <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:{{ t.size }};line-height:1.1;color:#153B68;letter-spacing:-.01em">{{ t.big }}</div>
+          <div style="width:28px;height:2px;background:#B09A67;margin:16px 0 14px"></div>
+          <div style="font-size:14px;line-height:1.55;color:#4A5566">{{ t.small }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- About preview -->
+  <section data-screen-label="Home — About" aria-labelledby="about-h" style="max-width:1280px;margin:0 auto;padding:clamp(80px,10vw,140px) clamp(20px,4vw,48px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:clamp(48px,7vw,104px);align-items:center">
+      <div data-reveal="1" style="position:relative">
+        <div style="position:relative;aspect-ratio:5/6;width:100%">
+          <image-slot id="about-preview-image" src="https://picsum.photos/seed/ih-territory/1000/1200" shape="rect" placeholder="Photo — partners on site in the Northern Territory"></image-slot>
+        </div>
+        <div style="position:absolute;right:clamp(-24px,-2vw,0px);bottom:-32px;background:#153B68;color:#fff;padding:28px 32px;max-width:300px;pointer-events:none">
+          <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#C9B68A">Darwin, Northern Territory</div>
+          <div style="margin-top:10px;font-size:15px;line-height:1.55">Territory owned and operated. Working with clients across Australia.</div>
+        </div>
+      </div>
+      <div data-reveal="1">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px">
+          <span style="display:block;width:32px;height:1px;background:#B09A67"></span>
+          <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">About IH Advisory</span>
+        </div>
+        <h2 id="about-h" style="margin:0;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(30px,3.6vw,46px);line-height:1.15;letter-spacing:-.015em;color:#153B68;text-wrap:balance">Trusted Advisors for Organisations Navigating Change</h2>
+        <p style="margin:28px 0 0;font-size:17px;line-height:1.75;color:#3E4A5C;text-wrap:pretty">IH Advisory is a 100% Indigenous and Veteran owned business, founded and operated in the Northern Territory. Our partners bring more than 60 years of combined leadership and consulting experience across Commonwealth and Territory government, Defence, mining, healthcare and the community sector.</p>
+        <p style="margin:18px 0 0;font-size:17px;line-height:1.75;color:#3E4A5C;text-wrap:pretty">We focus on three things that determine whether an organisation thrives — strategy, culture and capability — and we stay through implementation, so advice becomes change that lasts.</p>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:40px;border-top:1px solid #E6E1D5;border-bottom:1px solid #E6E1D5">
+          <div style="padding:20px 0">
+            <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#153B68">Strategy</div>
+            <div style="font-size:13px;color:#5A6577;margin-top:4px">Direction &amp; governance</div>
+          </div>
+          <div style="padding:20px 0 20px 20px;border-left:1px solid #E6E1D5">
+            <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#153B68">Culture</div>
+            <div style="font-size:13px;color:#5A6577;margin-top:4px">People &amp; behaviour</div>
+          </div>
+          <div style="padding:20px 0 20px 20px;border-left:1px solid #E6E1D5">
+            <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#153B68">Capability</div>
+            <div style="font-size:13px;color:#5A6577;margin-top:4px">Leaders &amp; systems</div>
+          </div>
+        </div>
+        <a href="#" onClick="{{ goAbout }}" style="display:inline-flex;align-items:center;gap:12px;margin-top:36px;font-family:Montserrat,sans-serif;font-weight:600;font-size:15px;color:#153B68;padding-bottom:6px;border-bottom:2px solid #B09A67" style-hover="color:#7A6944">Learn More About IH Advisory <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" data-screen-label="Home — Services" aria-labelledby="services-h" style="background:#F8F8F6;scroll-margin-top:84px">
+    <div style="max-width:1280px;margin:0 auto;padding:clamp(80px,10vw,128px) clamp(20px,4vw,48px)">
+      <div data-reveal="1" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:56px">
+        <div style="max-width:640px">
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px">
+            <span style="display:block;width:32px;height:1px;background:#B09A67"></span>
+            <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">Our Services</span>
+          </div>
+          <h2 id="services-h" style="margin:0;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(30px,3.6vw,46px);line-height:1.15;letter-spacing:-.015em;color:#153B68">Five areas of practice. One integrated approach.</h2>
+        </div>
+        <p style="margin:0;max-width:420px;font-size:16px;line-height:1.7;color:#4A5566">From targeted interventions to enterprise-wide transformation, we bring the right expertise to each stage of your challenge.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:24px">
+        <sc-for list="{{ services }}" as="s" hint-placeholder-count="5">
+          <article data-reveal="1" style="background:#FFFFFF;border:1px solid #E8E4DA;padding:40px 36px 36px;display:flex;flex-direction:column;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s,border-color .35s" style-hover="transform:translateY(-6px);box-shadow:0 28px 56px -28px rgba(15,42,74,0.35);border-color:#B09A67">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start">
+              <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:14px;letter-spacing:.1em;color:#7A6944">{{ s.num }}</span>
+              <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#153B68;background:#F1EDE3;padding:6px 10px">{{ s.pillar }}</span>
+            </div>
+            <h3 style="margin:28px 0 0;font-family:Montserrat,sans-serif;font-weight:600;font-size:23px;line-height:1.25;color:#153B68;text-wrap:balance">{{ s.title }}</h3>
+            <p style="margin:14px 0 0;font-size:15px;line-height:1.65;color:#4A5566">{{ s.short }}</p>
+            <div style="width:100%;height:1px;background:#ECE8DE;margin:26px 0 20px"></div>
+            <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;flex:1">
+              <sc-for list="{{ s.preview }}" as="it" hint-placeholder-count="5">
+                <li style="display:flex;gap:12px;align-items:baseline;font-size:14.5px;color:#2C3848"><span style="flex:none;width:6px;height:6px;background:#B09A67;transform:rotate(45deg);position:relative;top:-2px"></span>{{ it }}</li>
+              </sc-for>
+              <li style="font-size:13.5px;color:#7A6944;padding-left:18px">{{ s.more }}</li>
+            </ul>
+            <a href="#" onClick="{{ s.go }}" style="margin-top:28px;display:inline-flex;align-items:center;gap:10px;font-family:Montserrat,sans-serif;font-weight:600;font-size:14px;color:#153B68" style-hover="color:#7A6944">Explore service <span aria-hidden="true">→</span></a>
+          </article>
+        </sc-for>
+        <article data-reveal="1" style="background:#153B68;padding:40px 36px;display:flex;flex-direction:column;justify-content:space-between;gap:32px;min-height:360px">
+          <div>
+            <span style="display:block;width:40px;height:2px;background:#B09A67"></span>
+            <h3 style="margin:28px 0 0;font-family:Montserrat,sans-serif;font-weight:600;font-size:26px;line-height:1.25;color:#FFFFFF">Not sure where to start?</h3>
+            <p style="margin:16px 0 0;font-size:16px;line-height:1.7;color:rgba(255,255,255,0.85)">Most challenges cross more than one area. A confidential conversation with a partner will help define the problem — and the right response.</p>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px">
+            <a href="#" onClick="{{ goContact }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:14px;color:#0F2A4A;background:#B09A67;padding:15px 24px;border-radius:2px" style-hover="background:#C9B68A;color:#0F2A4A">Speak with a Partner</a>
+            <a href="#" onClick="{{ goServices }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:14px;color:#fff;padding:15px 4px" style-hover="color:#C9B68A">All services →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why choose -->
+  <section data-screen-label="Home — Why IH Advisory" aria-labelledby="why-h" style="max-width:1280px;margin:0 auto;padding:clamp(80px,10vw,140px) clamp(20px,4vw,48px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:clamp(48px,7vw,104px);align-items:start">
+      <div data-reveal="1" style="position:relative">
+        <div style="position:relative;aspect-ratio:4/5;width:100%">
+          <image-slot id="why-image" src="https://picsum.photos/seed/ih-workshop/1000/1250" shape="rect" placeholder="Photo — facilitated strategic workshop with client leadership team"></image-slot>
+        </div>
+        <div style="position:absolute;top:-16px;left:-16px;width:96px;height:96px;border-top:2px solid #B09A67;border-left:2px solid #B09A67;pointer-events:none"></div>
+      </div>
+      <div>
+        <div data-reveal="1">
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px">
+            <span style="display:block;width:32px;height:1px;background:#B09A67"></span>
+            <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">Why IH Advisory</span>
+          </div>
+          <h2 id="why-h" style="margin:0;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(30px,3.6vw,46px);line-height:1.15;letter-spacing:-.015em;color:#153B68;text-wrap:balance">Advice grounded in service, integrity and experience.</h2>
+        </div>
+        <div style="margin-top:48px;display:flex;flex-direction:column">
+          <sc-for list="{{ why }}" as="w" hint-placeholder-count="4">
+            <div data-reveal="1" style="display:grid;grid-template-columns:56px minmax(0,1fr);gap:20px;padding:28px 0;border-top:1px solid #E6E1D5">
+              <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:14px;color:#7A6944;letter-spacing:.08em;padding-top:4px">{{ w.num }}</span>
+              <div>
+                <h3 style="margin:0;font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;color:#153B68">{{ w.title }}</h3>
+                <p style="margin:10px 0 0;font-size:15.5px;line-height:1.7;color:#4A5566">{{ w.text }}</p>
+                <sc-if value="{{ w.hasTags }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px">
+                    <sc-for list="{{ w.tags }}" as="tag" hint-placeholder-count="7">
+                      <span style="font-size:13px;color:#153B68;border:1px solid #DCD6C6;padding:6px 12px">{{ tag }}</span>
+                    </sc-for>
+                  </div>
+                </sc-if>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners -->
+  <section id="partners" data-screen-label="Home — Partners" aria-labelledby="partners-h" style="background:#F8F8F6;scroll-margin-top:84px">
+    <div style="max-width:1280px;margin:0 auto;padding:clamp(80px,10vw,128px) clamp(20px,4vw,48px)">
+      <div data-reveal="1" style="text-align:center;max-width:720px;margin:0 auto 64px">
+        <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:24px">
+          <span style="display:block;width:32px;height:1px;background:#B09A67"></span>
+          <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">Meet the Partners</span>
+          <span style="display:block;width:32px;height:1px;background:#B09A67"></span>
+        </div>
+        <h2 id="partners-h" style="margin:0;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(30px,3.6vw,46px);line-height:1.15;letter-spacing:-.015em;color:#153B68">Senior people. Directly involved.</h2>
+        <p style="margin:20px 0 0;font-size:17px;line-height:1.7;color:#4A5566">Every engagement is led by a partner — the people you meet are the people who do the work.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,480px),1fr));gap:32px">
+        <sc-for list="{{ partners }}" as="p" hint-placeholder-count="2">
+          <article data-reveal="1" style="background:#FFFFFF;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));border:1px solid #E8E4DA">
+            <div style="position:relative;min-height:340px">
+              <image-slot id="{{ p.slot }}" src="{{ p.photo }}" shape="rect" placeholder="{{ p.slotLabel }}"></image-slot>
+            </div>
+            <div style="padding:36px 32px;display:flex;flex-direction:column">
+              <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">{{ p.role }}</div>
+              <h3 style="margin:10px 0 0;font-family:Montserrat,sans-serif;font-weight:600;font-size:26px;color:#153B68">{{ p.name }}</h3>
+              <blockquote style="margin:22px 0 0;padding:0 0 0 18px;border-left:2px solid #B09A67;font-size:16px;line-height:1.6;font-style:italic;color:#2C3848">“{{ p.quote }}”</blockquote>
+              <div style="margin-top:24px;font-family:Montserrat,sans-serif;font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6577">Key expertise</div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;flex:1;align-content:flex-start">
+                <sc-for list="{{ p.expertise }}" as="e" hint-placeholder-count="5">
+                  <span style="font-size:12.5px;color:#153B68;background:#F3F0E8;padding:6px 10px">{{ e }}</span>
+                </sc-for>
+              </div>
+              <a href="#" onClick="{{ p.go }}" style="margin-top:28px;display:inline-flex;align-items:center;gap:10px;font-family:Montserrat,sans-serif;font-weight:600;font-size:14px;color:#153B68;align-self:flex-start;padding-bottom:5px;border-bottom:2px solid #B09A67" style-hover="color:#7A6944">View Full Profile <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries -->
+  <section data-screen-label="Home — Industries" aria-labelledby="ind-h" style="max-width:1280px;margin:0 auto;padding:clamp(80px,10vw,128px) clamp(20px,4vw,48px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(40px,6vw,80px);align-items:start">
+      <div data-reveal="1">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px">
+          <span style="display:block;width:32px;height:1px;background:#B09A67"></span>
+          <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">Industries We Support</span>
+        </div>
+        <h2 id="ind-h" style="margin:0;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(30px,3.4vw,42px);line-height:1.15;letter-spacing:-.015em;color:#153B68">Cross-sector depth, applied to your context.</h2>
+        <p style="margin:24px 0 0;font-size:16px;line-height:1.7;color:#4A5566">We welcome clients from any sector. Our experience across public, private and community organisations means we understand the pressures you operate under.</p>
+      </div>
+      <div data-reveal="1" style="grid-column:span 2;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));border-top:1px solid #E6E1D5;border-left:1px solid #E6E1D5">
+        <sc-for list="{{ industries }}" as="i" hint-placeholder-count="9">
+          <div style="padding:28px 24px;border-right:1px solid #E6E1D5;border-bottom:1px solid #E6E1D5;min-height:128px;display:flex;flex-direction:column;justify-content:space-between;gap:20px;transition:background .3s,color .3s;cursor:default;color:#153B68" style-hover="background:#153B68;color:#FFFFFF">
+            <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;color:#B09A67;letter-spacing:.08em">{{ i.num }}</span>
+            <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px">{{ i.name }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section data-screen-label="Home — Process" aria-labelledby="proc-h" style="background:#0F2A4A;color:#fff">
+    <div style="max-width:1280px;margin:0 auto;padding:clamp(80px,10vw,128px) clamp(20px,4vw,48px)">
+      <div data-reveal="1" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:64px">
+        <div style="max-width:620px">
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px">
+            <span style="display:block;width:32px;height:1px;background:#B09A67"></span>
+            <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#C9B68A">Our Approach</span>
+          </div>
+          <h2 id="proc-h" style="margin:0;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(30px,3.6vw,46px);line-height:1.15;letter-spacing:-.015em;color:#FFFFFF">From first conversation to lasting capability.</h2>
+        </div>
+        <p style="margin:0;max-width:400px;font-size:16px;line-height:1.7;color:rgba(255,255,255,0.8)">A clear, staged method — scaled to the size of the challenge and shaped around your people.</p>
+      </div>
+      <ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:0">
+        <sc-for list="{{ process }}" as="st" hint-placeholder-count="5">
+          <li data-reveal="1" style="position:relative;padding:0 24px 32px 0">
+            <div style="display:flex;align-items:center;margin-bottom:28px">
+              <span style="flex:none;width:14px;height:14px;border:2px solid #B09A67;background:#0F2A4A;transform:rotate(45deg)"></span>
+              <span style="flex:1;height:1px;background:rgba(176,154,103,0.45)"></span>
+            </div>
+            <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:13px;letter-spacing:.12em;color:#C9B68A">{{ st.num }}</div>
+            <h3 style="margin:10px 0 0;font-family:Montserrat,sans-serif;font-weight:600;font-size:22px;color:#FFFFFF">{{ st.title }}</h3>
+            <p style="margin:10px 0 0;font-size:15px;line-height:1.65;color:rgba(255,255,255,0.8)">{{ st.text }}</p>
+          </li>
+        </sc-for>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <sc-if value="{{ showTestimonials }}" hint-placeholder-val="{{ true }}">
+    <section data-screen-label="Home — Testimonials" aria-labelledby="test-h" style="max-width:1280px;margin:0 auto;padding:clamp(80px,10vw,128px) clamp(20px,4vw,48px)">
+      <div data-reveal="1" style="display:flex;align-items:center;gap:14px;margin-bottom:24px">
+        <span style="display:block;width:32px;height:1px;background:#B09A67"></span>
+        <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">Client Perspectives</span>
+      </div>
+      <h2 id="test-h" data-reveal="1" style="margin:0 0 56px;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(30px,3.6vw,46px);line-height:1.15;letter-spacing:-.015em;color:#153B68">What our clients say</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px">
+        <sc-for list="{{ testimonials }}" as="q" hint-placeholder-count="3">
+          <figure data-reveal="1" style="margin:0;background:#F8F8F6;padding:40px 36px;display:flex;flex-direction:column;gap:28px;border-top:3px solid #B09A67">
+            <span aria-hidden="true" style="font-family:Montserrat,sans-serif;font-weight:700;font-size:56px;line-height:.6;color:#B09A67;height:24px">“</span>
+            <blockquote style="margin:0;font-size:17px;line-height:1.7;color:#5A6577;font-style:italic;flex:1">{{ q.quote }}</blockquote>
+            <figcaption style="display:flex;align-items:center;gap:16px;padding-top:24px;border-top:1px solid #E6E1D5">
+              <span style="flex:none;width:48px;height:48px;border-radius:50%;background:#E6E1D5"></span>
+              <span style="display:flex;flex-direction:column;gap:3px">
+                <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:15px;color:#153B68">{{ q.name }}</span>
+                <span style="font-size:13.5px;color:#5A6577">{{ q.role }}</span>
+              </span>
+              <span style="margin-left:auto;font-family:Montserrat,sans-serif;font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#7A6944">{{ q.sector }}</span>
+            </figcaption>
+          </figure>
+        </sc-for>
+      </div>
+    </section>
+  </sc-if>
+</sc-if>
+
+<!-- ================= ABOUT ================= -->
+<sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="About — Header" style="background:#153B68;color:#fff;position:relative;overflow:hidden">
+    <div style="position:absolute;right:-120px;top:-120px;width:420px;height:420px;border:1px solid rgba(176,154,103,0.3);transform:rotate(45deg);pointer-events:none"></div>
+    <div style="position:relative;max-width:1280px;margin:0 auto;padding:clamp(72px,9vw,120px) clamp(20px,4vw,48px)">
+      <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#C9B68A">About IH Advisory</div>
+      <h1 style="margin:20px 0 0;max-width:900px;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(36px,5vw,64px);line-height:1.08;letter-spacing:-.02em;text-wrap:balance">A Territory consultancy built on service, integrity and experience.</h1>
+      <p style="margin:28px 0 0;max-width:640px;font-size:18px;line-height:1.7;color:rgba(255,255,255,0.86)">We partner with organisations to deliver strategic development and tailored solutions that move them forward — with a core focus on strategy, culture and capability.</p>
+    </div>
+  </section>
+
+  <section data-screen-label="About — Story" aria-labelledby="story-h" style="max-width:1280px;margin:0 auto;padding:clamp(80px,10vw,128px) clamp(20px,4vw,48px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(40px,6vw,96px)">
+      <div data-reveal="1">
+        <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">Our Story</div>
+        <h2 id="story-h" style="margin:20px 0 0;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(28px,3.2vw,40px);line-height:1.2;color:#153B68">Over 60 years of combined experience, now working for you.</h2>
+        <div style="margin-top:36px;display:flex;align-items:baseline;gap:16px">
+          <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:72px;line-height:1;color:#B09A67;letter-spacing:-.03em">60+</span>
+          <span style="font-size:14px;line-height:1.5;color:#4A5566;max-width:180px">years of leadership &amp; consulting experience</span>
+        </div>
+      </div>
+      <div data-reveal="1" style="font-size:17px;line-height:1.8;color:#3E4A5C">
+        <p style="margin:0">IH Advisory is a 100% Veteran and Indigenous owned local Northern Territory business. We partner with you to deliver strategic business development and tailored solutions that drive your organisation forward.</p>
+        <p style="margin:20px 0 0">Our foundational expertise is built on over 60 years of combined experience gained through direct employment and high-level consulting across Commonwealth and State government, not-for-profits, Defence, mining, construction, healthcare and tourism.</p>
+        <p style="margin:20px 0 0">This cross-sector expertise gives us the versatility and depth of knowledge to solve complex challenges for any organisation. From targeted interventions to enterprise-wide transformations, we have the capability to analyse, optimise and resolve your unique challenges.</p>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="About — Ownership" aria-labelledby="own-h" style="background:#F8F8F6">
+    <div style="max-width:1280px;margin:0 auto;padding:clamp(80px,10vw,128px) clamp(20px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:clamp(48px,7vw,104px);align-items:center">
+      <div data-reveal="1" style="position:relative;aspect-ratio:4/3;width:100%">
+        <image-slot id="about-ownership-image" src="https://picsum.photos/seed/ih-country/1200/900" shape="rect" placeholder="Photo — Northern Territory landscape or partners on Country"></image-slot>
+      </div>
+      <div data-reveal="1">
+        <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">Indigenous &amp; Veteran Ownership</div>
+        <h2 id="own-h" style="margin:20px 0 0;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(28px,3.2vw,40px);line-height:1.2;color:#153B68">Two traditions of service, one way of working.</h2>
+        <p style="margin:24px 0 0;font-size:17px;line-height:1.75;color:#3E4A5C">Our Indigenous ownership grounds us in respect for culture, community and Country, and in the understanding that lasting change is built through relationships. Our Veteran ownership brings the discipline, accountability and calm judgement learned leading people in demanding environments.</p>
+        <p style="margin:18px 0 0;font-size:17px;line-height:1.75;color:#3E4A5C">Together, they shape how we work: listen first, tell the truth, and stay until the job is done.</p>
+        <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:#E2DCCD;margin-top:36px;border:1px solid #E2DCCD">
+          <div style="background:#fff;padding:22px">
+            <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#153B68">Indigenous Owned</div>
+            <div style="font-size:14px;color:#4A5566;margin-top:6px">Proudly Indigenous Australian owned</div>
+          </div>
+          <div style="background:#fff;padding:22px">
+            <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#153B68">Veteran Owned</div>
+            <div style="font-size:14px;color:#4A5566;margin-top:6px">Leadership built through service</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="About — Values" aria-labelledby="val-h" style="max-width:1280px;margin:0 auto;padding:clamp(80px,10vw,128px) clamp(20px,4vw,48px)">
+    <div data-reveal="1" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">Our Values</div>
+    <h2 id="val-h" data-reveal="1" style="margin:20px 0 56px;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(28px,3.2vw,40px);line-height:1.2;color:#153B68">What you can expect from us.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:0;border-top:2px solid #153B68">
+      <sc-for list="{{ values }}" as="v" hint-placeholder-count="4">
+        <div data-reveal="1" style="padding:32px 28px 32px 0">
+          <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:13px;color:#7A6944;letter-spacing:.1em">{{ v.num }}</div>
+          <h3 style="margin:14px 0 0;font-family:Montserrat,sans-serif;font-weight:600;font-size:21px;color:#153B68">{{ v.title }}</h3>
+          <p style="margin:12px 0 0;font-size:15.5px;line-height:1.7;color:#4A5566">{{ v.text }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section data-screen-label="About — Framework" aria-labelledby="fw-h" style="background:#153B68;color:#fff">
+    <div style="max-width:1280px;margin:0 auto;padding:clamp(80px,10vw,128px) clamp(20px,4vw,48px)">
+      <div data-reveal="1" style="text-align:center;max-width:720px;margin:0 auto 64px">
+        <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#C9B68A">Our Framework</div>
+        <h2 id="fw-h" style="margin:20px 0 0;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(28px,3.6vw,46px);line-height:1.15">Strategy <span style="color:#B09A67">|</span> Culture <span style="color:#B09A67">|</span> Capability</h2>
+        <p style="margin:20px 0 0;font-size:17px;line-height:1.7;color:rgba(255,255,255,0.84)">Three connected levers. Strong organisations get all three right — and keep them aligned as they change.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:1px;background:rgba(176,154,103,0.35);border:1px solid rgba(176,154,103,0.35)">
+        <sc-for list="{{ framework }}" as="f" hint-placeholder-count="3">
+          <div data-reveal="1" style="background:#153B68;padding:44px 36px">
+            <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:13px;letter-spacing:.12em;color:#C9B68A">{{ f.num }}</div>
+            <h3 style="margin:16px 0 0;font-family:Montserrat,sans-serif;font-weight:600;font-size:28px">{{ f.title }}</h3>
+            <p style="margin:14px 0 0;font-size:16px;line-height:1.7;color:rgba(255,255,255,0.86)">{{ f.text }}</p>
+            <ul style="list-style:none;margin:28px 0 0;padding:20px 0 0;border-top:1px solid rgba(255,255,255,0.18);display:flex;flex-direction:column;gap:10px">
+              <sc-for list="{{ f.items }}" as="fi" hint-placeholder-count="4">
+                <li style="display:flex;gap:12px;align-items:baseline;font-size:15px;color:#fff"><span style="flex:none;width:6px;height:6px;background:#B09A67;transform:rotate(45deg);position:relative;top:-2px"></span>{{ fi }}</li>
+              </sc-for>
+            </ul>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="About — What sets us apart" aria-labelledby="apart-h" style="max-width:1280px;margin:0 auto;padding:clamp(80px,10vw,128px) clamp(20px,4vw,48px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(40px,6vw,96px)">
+      <div data-reveal="1">
+        <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">What Sets Us Apart</div>
+        <h2 id="apart-h" style="margin:20px 0 0;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(28px,3.2vw,40px);line-height:1.2;color:#153B68">Boutique attention. Major-firm rigour.</h2>
+        <div style="margin-top:40px;font-family:Montserrat,sans-serif;font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6577">Industries we serve</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px">
+          <sc-for list="{{ industries }}" as="i" hint-placeholder-count="9">
+            <span style="font-size:13.5px;color:#153B68;border:1px solid #DCD6C6;padding:7px 12px">{{ i.name }}</span>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{ why }}" as="w" hint-placeholder-count="4">
+          <div data-reveal="1" style="display:grid;grid-template-columns:56px minmax(0,1fr);gap:20px;padding:26px 0;border-top:1px solid #E6E1D5">
+            <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:14px;color:#7A6944;letter-spacing:.08em;padding-top:4px">{{ w.num }}</span>
+            <div>
+              <h3 style="margin:0;font-family:Montserrat,sans-serif;font-weight:600;font-size:19px;color:#153B68">{{ w.title }}</h3>
+              <p style="margin:8px 0 0;font-size:15.5px;line-height:1.7;color:#4A5566">{{ w.text }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="leadership" data-screen-label="About — Leadership" aria-labelledby="lead-h" style="background:#F8F8F6;scroll-margin-top:84px">
+    <div style="max-width:1280px;margin:0 auto;padding:clamp(80px,10vw,128px) clamp(20px,4vw,48px)">
+      <div data-reveal="1" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">Leadership Team</div>
+      <h2 id="lead-h" data-reveal="1" style="margin:20px 0 56px;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(28px,3.2vw,40px);line-height:1.2;color:#153B68">Our Partners</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:32px">
+        <sc-for list="{{ partners }}" as="p" hint-placeholder-count="2">
+          <a href="#" onClick="{{ p.go }}" data-reveal="1" style="display:block;background:#fff;border:1px solid #E8E4DA;transition:box-shadow .35s,transform .35s" style-hover="box-shadow:0 28px 56px -28px rgba(15,42,74,0.35);transform:translateY(-4px)">
+            <div style="position:relative;aspect-ratio:4/3;width:100%">
+              <image-slot id="{{ p.slot }}" src="{{ p.photo }}" shape="rect" placeholder="{{ p.slotLabel }}"></image-slot>
+            </div>
+            <div style="padding:28px 32px;display:flex;justify-content:space-between;align-items:center;gap:16px">
+              <div>
+                <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:22px;color:#153B68">{{ p.name }}</div>
+                <div style="font-size:14px;color:#5A6577;margin-top:4px">{{ p.role }} · {{ p.tagline }}</div>
+              </div>
+              <span aria-hidden="true" style="flex:none;width:44px;height:44px;border:1px solid #B09A67;display:flex;align-items:center;justify-content:center;color:#7A6944;font-size:18px">→</span>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+</sc-if>
+
+<!-- ================= SERVICES ================= -->
+<sc-if value="{{ isServices }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="Services — Header" style="background:#153B68;color:#fff;position:relative;overflow:hidden">
+    <div style="position:absolute;right:-120px;top:-120px;width:420px;height:420px;border:1px solid rgba(176,154,103,0.3);transform:rotate(45deg);pointer-events:none"></div>
+    <div style="position:relative;max-width:1280px;margin:0 auto;padding:clamp(72px,9vw,120px) clamp(20px,4vw,48px) 56px">
+      <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#C9B68A">Services</div>
+      <h1 style="margin:20px 0 0;max-width:900px;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(36px,5vw,64px);line-height:1.08;letter-spacing:-.02em;text-wrap:balance">Strategic and practical support, from boardroom to front line.</h1>
+      <p style="margin:28px 0 0;max-width:640px;font-size:18px;line-height:1.7;color:rgba(255,255,255,0.86)">Five areas of practice, delivered by experienced partners and tailored to the scale of your challenge.</p>
+      <nav aria-label="Service areas" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:48px">
+        <sc-for list="{{ services }}" as="s" hint-placeholder-count="5">
+          <a href="#" onClick="{{ s.go }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:13.5px;color:#fff;border:1px solid rgba(255,255,255,0.35);padding:12px 18px;border-radius:2px" style-hover="border-color:#B09A67;color:#C9B68A">{{ s.num }} · {{ s.title }}</a>
+        </sc-for>
+      </nav>
+    </div>
+  </section>
+
+  <section data-screen-label="Services — Overview" style="max-width:1280px;margin:0 auto;padding:clamp(72px,9vw,112px) clamp(20px,4vw,48px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:24px">
+      <sc-for list="{{ services }}" as="s" hint-placeholder-count="5">
+        <a href="#" onClick="{{ s.go }}" data-reveal="1" style="display:flex;flex-direction:column;background:#FFFFFF;border:1px solid #E8E4DA;color:#1B2635;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s,border-color .35s" style-hover="transform:translateY(-6px);box-shadow:0 28px 56px -28px rgba(15,42,74,0.35);border-color:#B09A67;color:#1B2635">
+          <div style="position:relative;aspect-ratio:16/9;width:100%;overflow:hidden;background:#E6E1D5"><img src="{{ s.image }}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          <div style="padding:32px 32px 30px;display:flex;flex-direction:column;flex:1">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:14px;letter-spacing:.1em;color:#7A6944">{{ s.num }}</span>
+              <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#153B68;background:#F1EDE3;padding:6px 10px">{{ s.pillar }}</span>
+            </div>
+            <h2 style="margin:22px 0 0;font-family:Montserrat,sans-serif;font-weight:600;font-size:23px;line-height:1.25;color:#153B68;text-wrap:balance">{{ s.title }}</h2>
+            <p style="margin:12px 0 0;font-size:15px;line-height:1.65;color:#4A5566;flex:1">{{ s.short }}</p>
+            <span style="margin-top:24px;font-family:Montserrat,sans-serif;font-weight:600;font-size:14px;color:#153B68">View service →</span>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+</sc-if>
+
+<!-- ================= PARTNER PROFILE ================= -->
+<sc-if value="{{ isPartner }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="Partner — {{ pp.name }}" style="background:#F8F8F6">
+    <div style="max-width:1280px;margin:0 auto;padding:40px clamp(20px,4vw,48px) clamp(64px,8vw,104px)">
+      <nav aria-label="Breadcrumb" style="display:flex;gap:10px;font-size:13.5px;color:#5A6577;margin-bottom:48px">
+        <a href="#" onClick="{{ goPartners }}" style="color:#153B68" style-hover="color:#7A6944">Partners</a><span aria-hidden="true">/</span><span>{{ pp.name }}</span>
+      </nav>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(40px,6vw,88px);align-items:center">
+        <div style="position:relative;aspect-ratio:4/5;width:100%;max-width:520px">
+          <image-slot id="{{ pp.slot }}" src="{{ pp.photo }}" shape="rect" placeholder="{{ pp.slotLabel }}"></image-slot>
+          <div style="position:absolute;left:0;bottom:0;width:40%;height:6px;background:#B09A67;pointer-events:none"></div>
+        </div>
+        <div>
+          <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">{{ pp.role }} · IH Advisory</div>
+          <h1 style="margin:16px 0 0;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(40px,5vw,64px);line-height:1.05;letter-spacing:-.02em;color:#153B68">{{ pp.name }}</h1>
+          <p style="margin:16px 0 0;font-size:18px;color:#3E4A5C">{{ pp.tagline }}</p>
+          <blockquote style="margin:36px 0 0;padding:0 0 0 24px;border-left:3px solid #B09A67;font-family:Montserrat,sans-serif;font-weight:500;font-size:clamp(20px,2vw,26px);line-height:1.45;color:#153B68">“{{ pp.quote }}”</blockquote>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:40px">
+            <a href="#" onClick="{{ goContact }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:14.5px;color:#fff;background:#153B68;padding:16px 26px;border-radius:2px" style-hover="background:#0F2A4A;color:#fff">Contact {{ pp.first }}</a>
+            <a href="#" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:14.5px;color:#153B68;border:1px solid #153B68;padding:15px 26px;border-radius:2px" style-hover="background:#153B68;color:#fff">LinkedIn profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1280px;margin:0 auto;padding:clamp(72px,9vw,112px) clamp(20px,4vw,48px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(40px,6vw,88px);align-items:start">
+      <div style="grid-column:span 2;min-width:0">
+        <h2 style="margin:0 0 28px;font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">Biography</h2>
+        <sc-for list="{{ pp.bio }}" as="para" hint-placeholder-count="5">
+          <p data-reveal="1" style="margin:0 0 22px;font-size:17px;line-height:1.8;color:#2C3848;max-width:720px;text-wrap:pretty">{{ para }}</p>
+        </sc-for>
+      </div>
+      <aside style="display:flex;flex-direction:column;gap:28px">
+        <div style="border-top:2px solid #153B68;padding-top:24px">
+          <h2 style="margin:0;font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#7A6944">Career highlights</h2>
+          <ul style="list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:12px">
+            <sc-for list="{{ pp.highlights }}" as="h" hint-placeholder-count="4">
+              <li style="font-size:15px;line-height:1.55;color:#2C3848;padding-left:16px;border-left:2px solid #B09A67">{{ h }}</li>
+            </sc-for>
+          </ul>
+        </div>
+        <div style="border-top:2px solid #153B68;padding-top:24px">
+          <h2 style="margin:0;font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#7A6944">Key expertise</h2>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:16px">
+            <sc-for list="{{ pp.expertise }}" as="e" hint-placeholder-count="5">
+              <span style="font-size:13px;color:#153B68;background:#F3F0E8;padding:7px 11px">{{ e }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <div style="background:#153B68;padding:28px">
+          <h2 style="margin:0;font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#C9B68A">Consulting focus</h2>
+          <ul style="list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:10px">
+            <sc-for list="{{ pp.focus }}" as="fc" hint-placeholder-count="5">
+              <li style="display:flex;gap:12px;align-items:baseline;font-size:15px;color:#fff"><span style="flex:none;width:6px;height:6px;background:#B09A67;transform:rotate(45deg);position:relative;top:-2px"></span>{{ fc }}</li>
+            </sc-for>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid #E6E1D5">
+    <a href="#" onClick="{{ pp.otherGo }}" style="display:flex;justify-content:space-between;align-items:center;gap:24px;max-width:1280px;margin:0 auto;padding:40px clamp(20px,4vw,48px);color:#153B68" style-hover="color:#7A6944">
+      <span>
+        <span style="display:block;font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">Also meet</span>
+        <span style="display:block;margin-top:8px;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(22px,2.4vw,30px)">{{ pp.otherName }}</span>
+      </span>
+      <span aria-hidden="true" style="font-size:28px">→</span>
+    </a>
+  </section>
+</sc-if>
+
+<!-- ================= SERVICE DETAIL ================= -->
+<sc-if value="{{ isService }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="Service — {{ sv.title }}" style="background:#F8F8F6">
+    <div style="max-width:1280px;margin:0 auto;padding:40px clamp(20px,4vw,48px) clamp(64px,8vw,104px)">
+      <nav aria-label="Breadcrumb" style="display:flex;flex-wrap:wrap;gap:10px;font-size:13.5px;color:#5A6577;margin-bottom:48px">
+        <a href="#" onClick="{{ goServices }}" style="color:#153B68" style-hover="color:#7A6944">Services</a><span aria-hidden="true">/</span><span>{{ sv.title }}</span>
+      </nav>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(40px,6vw,88px);align-items:center">
+        <div>
+          <div style="display:flex;align-items:center;gap:14px">
+            <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:14px;letter-spacing:.1em;color:#7A6944">{{ sv.num }}</span>
+            <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#153B68;background:#EAE5D8;padding:6px 10px">{{ sv.pillar }}</span>
+          </div>
+          <h1 style="margin:22px 0 0;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(36px,4.6vw,58px);line-height:1.08;letter-spacing:-.02em;color:#153B68;text-wrap:balance">{{ sv.title }}</h1>
+          <p style="margin:24px 0 0;max-width:560px;font-size:19px;line-height:1.65;color:#3E4A5C">{{ sv.short }}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:40px">
+            <a href="#" onClick="{{ sv.enquire }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:14.5px;color:#fff;background:#153B68;padding:16px 26px;border-radius:2px" style-hover="background:#0F2A4A;color:#fff">Discuss this service</a>
+            <a href="#" onClick="{{ goServices }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:14.5px;color:#153B68;border:1px solid #153B68;padding:15px 26px;border-radius:2px" style-hover="background:#153B68;color:#fff">All services</a>
+          </div>
+        </div>
+        <div style="position:relative;aspect-ratio:4/3;width:100%">
+          <image-slot id="{{ sv.slot }}" src="{{ sv.image }}" shape="rect" placeholder="{{ sv.slotLabel }}"></image-slot>
+          <div style="position:absolute;left:0;bottom:0;width:40%;height:6px;background:#B09A67;pointer-events:none"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1280px;margin:0 auto;padding:clamp(72px,9vw,112px) clamp(20px,4vw,48px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(40px,6vw,88px);align-items:start">
+      <div data-reveal="1" style="grid-column:span 2;min-width:0">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px"><span style="display:block;width:32px;height:1px;background:#B09A67"></span><span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">Overview</span></div>
+        <p style="margin:0;max-width:720px;font-family:Montserrat,sans-serif;font-weight:500;font-size:clamp(20px,2vw,25px);line-height:1.55;color:#153B68;text-wrap:pretty">{{ sv.overview }}</p>
+        <p style="margin:24px 0 0;max-width:720px;font-size:17px;line-height:1.8;color:#3E4A5C;text-wrap:pretty">{{ sv.detail }}</p>
+      </div>
+      <aside data-reveal="1" style="border-top:2px solid #153B68;padding-top:24px">
+        <h2 style="margin:0;font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#7A6944">Services include</h2>
+        <ul style="list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column;gap:12px">
+          <sc-for list="{{ sv.items }}" as="it" hint-placeholder-count="6">
+            <li style="display:flex;gap:12px;align-items:baseline;font-size:15.5px;color:#2C3848"><span style="flex:none;width:6px;height:6px;background:#B09A67;transform:rotate(45deg);position:relative;top:-2px"></span>{{ it }}</li>
+          </sc-for>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section style="background:#F8F8F6">
+    <div style="max-width:1280px;margin:0 auto;padding:clamp(72px,9vw,112px) clamp(20px,4vw,48px)">
+      <div data-reveal="1"><div style="display:flex;align-items:center;gap:14px;margin-bottom:24px"><span style="display:block;width:32px;height:1px;background:#B09A67"></span><span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">Challenges we address</span></div>
+        <h2 style="margin:0 0 48px;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(28px,3.2vw,40px);line-height:1.2;color:#153B68">When organisations call us</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:20px">
+        <sc-for list="{{ sv.challengeList }}" as="c" hint-placeholder-count="4">
+          <div data-reveal="1" style="background:#fff;border:1px solid #E8E4DA;padding:30px 28px">
+            <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:13px;letter-spacing:.1em;color:#7A6944">{{ c.num }}</div>
+            <p style="margin:16px 0 0;font-size:16px;line-height:1.6;color:#2C3848">{{ c.text }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#153B68;color:#fff">
+    <div style="max-width:1280px;margin:0 auto;padding:clamp(72px,9vw,112px) clamp(20px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(40px,6vw,88px)">
+      <div data-reveal="1"><div style="display:flex;align-items:center;gap:14px;margin-bottom:24px"><span style="display:block;width:32px;height:1px;background:#B09A67"></span><span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#C9B68A">Expected outcomes</span></div>
+        <h2 style="margin:0;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(28px,3.2vw,40px);line-height:1.2">What changes for your organisation</h2>
+      </div>
+      <ul data-reveal="1" style="grid-column:span 2;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:28px 40px">
+        <sc-for list="{{ sv.outcomes }}" as="o" hint-placeholder-count="4">
+          <li style="font-size:17px;line-height:1.55;color:#fff;padding-left:18px;border-left:2px solid #B09A67">{{ o }}</li>
+        </sc-for>
+      </ul>
+    </div>
+  </section>
+
+  <section style="max-width:1280px;margin:0 auto;padding:clamp(72px,9vw,112px) clamp(20px,4vw,48px)">
+    <div data-reveal="1"><div style="display:flex;align-items:center;gap:14px;margin-bottom:24px"><span style="display:block;width:32px;height:1px;background:#B09A67"></span><span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">How we work</span></div>
+      <h2 style="margin:0 0 56px;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(28px,3.2vw,40px);line-height:1.2;color:#153B68">A staged, practical approach</h2>
+    </div>
+    <ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr))">
+      <sc-for list="{{ process }}" as="st" hint-placeholder-count="5">
+        <li data-reveal="1" style="padding:0 24px 32px 0">
+          <div style="display:flex;align-items:center;margin-bottom:24px"><span style="flex:none;width:12px;height:12px;border:2px solid #B09A67;background:#fff;transform:rotate(45deg)"></span><span style="flex:1;height:1px;background:#DCD6C6"></span></div>
+          <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:13px;letter-spacing:.12em;color:#7A6944">{{ st.num }}</div>
+          <h3 style="margin:8px 0 0;font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;color:#153B68">{{ st.title }}</h3>
+          <p style="margin:8px 0 0;font-size:15px;line-height:1.6;color:#4A5566">{{ st.text }}</p>
+        </li>
+      </sc-for>
+    </ol>
+  </section>
+
+  <sc-if value="{{ sv.hasArticles }}" hint-placeholder-val="{{ false }}">
+    <section style="background:#F8F8F6">
+      <div style="max-width:1280px;margin:0 auto;padding:clamp(72px,9vw,104px) clamp(20px,4vw,48px)">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px"><span style="display:block;width:32px;height:1px;background:#B09A67"></span><span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">Related insights</span></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px;margin-top:8px">
+          <sc-for list="{{ sv.articles }}" as="ar" hint-placeholder-count="2">
+            <a href="#" onClick="{{ ar.go }}" style="display:grid;grid-template-columns:140px minmax(0,1fr);background:#fff;border:1px solid #E8E4DA;color:#1B2635" style-hover="border-color:#B09A67;color:#1B2635">
+              <img src="{{ ar.thumb }}" alt="" loading="lazy" style="width:100%;height:100%;min-height:140px;object-fit:cover;display:block">
+              <span style="padding:22px 24px;display:flex;flex-direction:column;gap:8px">
+                <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7A6944">{{ ar.category }}</span>
+                <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:17px;line-height:1.35;color:#153B68">{{ ar.title }}</span>
+                <span style="font-size:13px;color:#5A6577">{{ ar.date }} · {{ ar.read }}</span>
+              </span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+
+  <section style="max-width:1280px;margin:0 auto;padding:clamp(72px,9vw,104px) clamp(20px,4vw,48px)">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px"><span style="display:block;width:32px;height:1px;background:#B09A67"></span><span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">Other services</span></div>
+    <div style="display:flex;flex-direction:column;border-bottom:1px solid #E6E1D5">
+      <sc-for list="{{ sv.others }}" as="o" hint-placeholder-count="4">
+        <a href="#" onClick="{{ o.go }}" style="display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:20px;align-items:center;padding:26px 0;border-top:1px solid #E6E1D5;color:#153B68" style-hover="color:#7A6944">
+          <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:14px;letter-spacing:.1em;color:#7A6944">{{ o.num }}</span>
+          <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(18px,2vw,23px)">{{ o.title }}</span>
+          <span aria-hidden="true" style="font-size:22px">→</span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+</sc-if>
+
+<!-- ================= INSIGHTS ================= -->
+<sc-if value="{{ isInsights }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="Insights — Header" style="background:#153B68;color:#fff;position:relative;overflow:hidden">
+    <div style="position:absolute;right:-120px;top:-120px;width:420px;height:420px;border:1px solid rgba(176,154,103,0.3);transform:rotate(45deg);pointer-events:none"></div>
+    <div style="position:relative;max-width:1280px;margin:0 auto;padding:clamp(72px,9vw,120px) clamp(20px,4vw,48px) 56px">
+      <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#C9B68A">Insights</div>
+      <h1 style="margin:20px 0 0;max-width:860px;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(36px,5vw,64px);line-height:1.08;letter-spacing:-.02em;text-wrap:balance">Perspectives on strategy, culture and capability.</h1>
+      <p style="margin:28px 0 0;max-width:620px;font-size:18px;line-height:1.7;color:rgba(255,255,255,0.86)">Practical thinking from our partners for leaders navigating change.</p>
+      <div role="tablist" aria-label="Filter by topic" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:48px">
+        <sc-for list="{{ cats }}" as="c" hint-placeholder-count="5">
+          <button role="tab" aria-selected="{{ c.on }}" onClick="{{ c.pick }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:13.5px;color:{{ c.color }};background:{{ c.bg }};border:1px solid {{ c.border }};padding:12px 18px;border-radius:2px;cursor:pointer">{{ c.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1280px;margin:0 auto;padding:clamp(56px,7vw,96px) clamp(20px,4vw,48px) clamp(72px,9vw,120px)">
+    <sc-if value="{{ featured.title }}" hint-placeholder-val="{{ false }}">
+      <a href="#" onClick="{{ featured.go }}" data-reveal="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));background:#F8F8F6;color:#1B2635;margin-bottom:48px" style-hover="color:#1B2635;box-shadow:0 28px 56px -32px rgba(15,42,74,0.35)">
+        <div style="position:relative;min-height:340px;overflow:hidden;background:#E6E1D5"><div role="img" aria-label="{{ featured.title }}" style="position:absolute;inset:0;background-size:cover;background-position:center;background-image:{{ featured.bg }}"></div></div>
+        <div style="padding:clamp(32px,4vw,56px);display:flex;flex-direction:column;justify-content:center">
+          <div style="display:flex;gap:12px;align-items:center">
+            <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:#153B68;padding:6px 10px">Featured</span>
+            <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7A6944">{{ featured.category }}</span>
+          </div>
+          <h2 style="margin:22px 0 0;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(26px,2.8vw,36px);line-height:1.2;color:#153B68;text-wrap:balance">{{ featured.title }}</h2>
+          <p style="margin:18px 0 0;font-size:16.5px;line-height:1.7;color:#3E4A5C">{{ featured.excerpt }}</p>
+          <div style="margin-top:28px;font-size:14px;color:#5A6577">{{ featured.author }} · {{ featured.date }} · {{ featured.read }}</div>
+          <span style="margin-top:28px;font-family:Montserrat,sans-serif;font-weight:600;font-size:14px;color:#153B68;align-self:flex-start;padding-bottom:5px;border-bottom:2px solid #B09A67">Read article →</span>
+        </div>
+      </a>
+    </sc-if>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:40px 28px">
+      <sc-for list="{{ restArticles }}" as="ar" hint-placeholder-count="3">
+        <a href="#" onClick="{{ ar.go }}" data-reveal="1" style="display:flex;flex-direction:column;color:#1B2635" style-hover="color:#1B2635">
+          <div style="position:relative;aspect-ratio:16/10;width:100%;overflow:hidden;background:#E6E1D5"><img src="{{ ar.image }}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1)"></div>
+          <span style="margin-top:22px;font-family:Montserrat,sans-serif;font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7A6944">{{ ar.category }}</span>
+          <span style="margin-top:10px;font-family:Montserrat,sans-serif;font-weight:600;font-size:20px;line-height:1.3;color:#153B68" style-hover="color:#7A6944">{{ ar.title }}</span>
+          <span style="margin-top:10px;font-size:15px;line-height:1.65;color:#4A5566">{{ ar.excerpt }}</span>
+          <span style="margin-top:16px;font-size:13.5px;color:#5A6577">{{ ar.author }} · {{ ar.date }} · {{ ar.read }}</span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+</sc-if>
+
+<!-- ================= ARTICLE ================= -->
+<sc-if value="{{ isArticle }}" hint-placeholder-val="{{ false }}">
+  <article data-screen-label="Article — {{ art.title }}">
+    <header style="max-width:880px;margin:0 auto;padding:40px clamp(20px,4vw,48px) 48px">
+      <nav aria-label="Breadcrumb" style="display:flex;flex-wrap:wrap;gap:10px;font-size:13.5px;color:#5A6577;margin-bottom:48px">
+        <a href="#" onClick="{{ goInsights }}" style="color:#153B68" style-hover="color:#7A6944">Insights</a><span aria-hidden="true">/</span><span>{{ art.category }}</span>
+      </nav>
+      <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">{{ art.category }}</div>
+      <h1 style="margin:18px 0 0;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(32px,4.4vw,54px);line-height:1.1;letter-spacing:-.02em;color:#153B68;text-wrap:balance">{{ art.title }}</h1>
+      <p style="margin:24px 0 0;font-size:19px;line-height:1.65;color:#3E4A5C">{{ art.excerpt }}</p>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:32px;padding-top:24px;border-top:1px solid #E6E1D5">
+        <img src="{{ art.authorPhoto }}" alt="" style="width:48px;height:48px;border-radius:50%;object-fit:cover">
+        <span style="display:flex;flex-direction:column;gap:2px">
+          <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:15px;color:#153B68">{{ art.author }}</span>
+          <span style="font-size:13.5px;color:#5A6577">Partner · {{ art.date }} · {{ art.read }}</span>
+        </span>
+      </div>
+    </header>
+    <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,4vw,48px)">
+      <div style="position:relative;aspect-ratio:21/9;width:100%">
+        <image-slot id="{{ art.slot }}" src="{{ art.image }}" shape="rect" placeholder="Article feature image"></image-slot>
+      </div>
+    </div>
+    <div style="max-width:720px;margin:0 auto;padding:clamp(48px,6vw,80px) clamp(20px,4vw,48px)">
+      <p style="margin:0;font-size:19px;line-height:1.8;color:#1B2635;text-wrap:pretty">{{ art.intro }}</p>
+      <sc-for list="{{ art.sections }}" as="sec" hint-placeholder-count="3">
+        <h2 style="margin:44px 0 0;font-family:Montserrat,sans-serif;font-weight:600;font-size:24px;line-height:1.3;color:#153B68">{{ sec.h }}</h2>
+        <p style="margin:16px 0 0;font-size:17.5px;line-height:1.8;color:#2C3848;text-wrap:pretty">{{ sec.p }}</p>
+      </sc-for>
+      <blockquote style="margin:48px 0 0;padding:28px 0 28px 28px;border-left:3px solid #B09A67;font-family:Montserrat,sans-serif;font-weight:500;font-size:22px;line-height:1.5;color:#153B68">{{ art.pull }}</blockquote>
+      <div style="margin-top:56px;padding:28px;background:#F8F8F6;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between">
+        <span style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:16px;color:#153B68">Written by {{ art.author }}</span>
+          <span style="font-size:14px;color:#5A6577">Partner, IH Advisory</span>
+        </span>
+        <a href="#" onClick="{{ art.authorGo }}" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:14px;color:#153B68;border-bottom:2px solid #B09A67;padding-bottom:4px" style-hover="color:#7A6944">View profile →</a>
+      </div>
+    </div>
+  </article>
+  <section style="background:#F8F8F6">
+    <div style="max-width:1280px;margin:0 auto;padding:clamp(64px,8vw,104px) clamp(20px,4vw,48px)">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px"><span style="display:block;width:32px;height:1px;background:#B09A67"></span><span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">More insights</span></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:28px">
+        <sc-for list="{{ art.related }}" as="ar" hint-placeholder-count="3">
+          <a href="#" onClick="{{ ar.go }}" style="display:flex;flex-direction:column;background:#fff;color:#1B2635" style-hover="color:#1B2635;box-shadow:0 24px 48px -28px rgba(15,42,74,0.35)">
+            <div style="aspect-ratio:16/10;overflow:hidden;background:#E6E1D5"><img src="{{ ar.image }}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+            <span style="padding:22px 24px 26px;display:flex;flex-direction:column;gap:8px">
+              <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7A6944">{{ ar.category }}</span>
+              <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:18px;line-height:1.35;color:#153B68">{{ ar.title }}</span>
+              <span style="font-size:13px;color:#5A6577">{{ ar.date }} · {{ ar.read }}</span>
+            </span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+</sc-if>
+
+<!-- ================= CONTACT ================= -->
+<sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="Contact" style="background:#F8F8F6">
+    <div style="max-width:1280px;margin:0 auto;padding:clamp(64px,8vw,112px) clamp(20px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(40px,6vw,88px);align-items:start">
+      <div>
+        <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#7A6944">Contact</div>
+        <h1 style="margin:20px 0 0;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(36px,4.6vw,58px);line-height:1.08;letter-spacing:-.02em;color:#153B68;text-wrap:balance">Let’s talk about what you need to achieve.</h1>
+        <p style="margin:24px 0 0;font-size:17px;line-height:1.75;color:#3E4A5C;max-width:480px">Every enquiry is handled confidentially and responded to by a partner.</p>
+        <dl style="margin:48px 0 0;display:flex;flex-direction:column">
+          <div style="padding:22px 0;border-top:1px solid #E2DCCD">
+            <dt style="font-family:Montserrat,sans-serif;font-weight:600;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#7A6944">Email</dt>
+            <dd style="margin:8px 0 0"><a href="mailto:info@ihadvisory.com.au" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:19px;color:#153B68">info@ihadvisory.com.au</a></dd>
+          </div>
+          <div style="padding:22px 0;border-top:1px solid #E2DCCD">
+            <dt style="font-family:Montserrat,sans-serif;font-weight:600;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#7A6944">Phone</dt>
+            <dd style="margin:8px 0 0"><a href="tel:+61800000000" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:19px;color:#153B68">08 0000 0000</a></dd>
+          </div>
+          <div style="padding:22px 0;border-top:1px solid #E2DCCD">
+            <dt style="font-family:Montserrat,sans-serif;font-weight:600;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#7A6944">Service region</dt>
+            <dd style="margin:8px 0 0;font-size:16px;line-height:1.6;color:#2C3848">Based in Darwin, Northern Territory.<br>Supporting clients across Australia.</dd>
+          </div>
+          <div style="padding:22px 0;border-top:1px solid #E2DCCD;border-bottom:1px solid #E2DCCD">
+            <dt style="font-family:Montserrat,sans-serif;font-weight:600;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#7A6944">LinkedIn</dt>
+            <dd style="margin:8px 0 0"><a href="#" style="font-size:16px;color:#153B68;border-bottom:1px solid #B09A67">IH Advisory on LinkedIn</a></dd>
+          </div>
+        </dl>
+      </div>
+
+      <div style="background:#FFFFFF;border-top:3px solid #B09A67;box-shadow:0 24px 60px -30px rgba(15,42,74,0.3);padding:clamp(28px,4vw,48px)">
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ submit }}" noValidate="{{ true }}" style="display:flex;flex-direction:column;gap:22px">
+            <h2 style="margin:0;font-family:Montserrat,sans-serif;font-weight:600;font-size:24px;color:#153B68">Book a consultation</h2>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:22px">
+              <label style="display:flex;flex-direction:column;gap:8px">
+                <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:13px;color:#153B68">Name <span style="color:#7A6944">*</span></span>
+                <input type="text" autoComplete="name" value="{{ form.name }}" onChange="{{ on.name }}" style="height:52px;padding:0 16px;font:inherit;font-size:16px;color:#1B2635;border:1px solid {{ border.name }};border-radius:2px;background:#fff;outline:none" style-focus="border-color:#153B68;box-shadow:0 0 0 3px rgba(176,154,103,0.35)">
+                <sc-if value="{{ errors.name }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#A3322A">{{ errors.name }}</span></sc-if>
+              </label>
+              <label style="display:flex;flex-direction:column;gap:8px">
+                <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:13px;color:#153B68">Organisation</span>
+                <input type="text" autoComplete="organization" value="{{ form.org }}" onChange="{{ on.org }}" style="height:52px;padding:0 16px;font:inherit;font-size:16px;color:#1B2635;border:1px solid #D6D0C2;border-radius:2px;background:#fff;outline:none" style-focus="border-color:#153B68;box-shadow:0 0 0 3px rgba(176,154,103,0.35)">
+              </label>
+              <label style="display:flex;flex-direction:column;gap:8px">
+                <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:13px;color:#153B68">Email <span style="color:#7A6944">*</span></span>
+                <input type="email" autoComplete="email" value="{{ form.email }}" onChange="{{ on.email }}" style="height:52px;padding:0 16px;font:inherit;font-size:16px;color:#1B2635;border:1px solid {{ border.email }};border-radius:2px;background:#fff;outline:none" style-focus="border-color:#153B68;box-shadow:0 0 0 3px rgba(176,154,103,0.35)">
+                <sc-if value="{{ errors.email }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#A3322A">{{ errors.email }}</span></sc-if>
+              </label>
+              <label style="display:flex;flex-direction:column;gap:8px">
+                <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:13px;color:#153B68">Phone</span>
+                <input type="tel" autoComplete="tel" value="{{ form.phone }}" onChange="{{ on.phone }}" style="height:52px;padding:0 16px;font:inherit;font-size:16px;color:#1B2635;border:1px solid #D6D0C2;border-radius:2px;background:#fff;outline:none" style-focus="border-color:#153B68;box-shadow:0 0 0 3px rgba(176,154,103,0.35)">
+              </label>
+            </div>
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:13px;color:#153B68">Service required</span>
+              <select value="{{ form.service }}" onChange="{{ on.service }}" style="height:52px;padding:0 16px;font:inherit;font-size:16px;color:#1B2635;border:1px solid #D6D0C2;border-radius:2px;background:#fff;outline:none" style-focus="border-color:#153B68;box-shadow:0 0 0 3px rgba(176,154,103,0.35)">
+                <sc-for list="{{ serviceOptions }}" as="opt" hint-placeholder-count="6">
+                  <option value="{{ opt }}">{{ opt }}</option>
+                </sc-for>
+              </select>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-family:Montserrat,sans-serif;font-weight:600;font-size:13px;color:#153B68">Message <span style="color:#7A6944">*</span></span>
+              <textarea rows="5" value="{{ form.message }}" onChange="{{ on.message }}" placeholder="Briefly describe your organisation and what you’d like to achieve." style="padding:14px 16px;font:inherit;font-size:16px;line-height:1.6;color:#1B2635;border:1px solid {{ border.message }};border-radius:2px;background:#fff;outline:none;resize:vertical" style-focus="border-color:#153B68;box-shadow:0 0 0 3px rgba(176,154,103,0.35)"></textarea>
+              <sc-if value="{{ errors.message }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#A3322A">{{ errors.message }}</span></sc-if>
+            </label>
+            <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-top:6px">
+              <span style="font-size:13px;color:#5A6577">Your details are kept strictly confidential.</span>
+              <button type="submit" style="font-family:Montserrat,sans-serif;font-weight:600;font-size:15px;color:#fff;background:#153B68;border:none;padding:18px 32px;border-radius:2px;cursor:pointer" style-hover="background:#0F2A4A">Send Enquiry</button>
+            </div>
+          </form>
+        </sc-if>
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div role="status" style="padding:40px 0;text-align:center">
+            <span style="display:block;width:20px;height:20px;margin:0 auto;background:#B09A67;transform:rotate(45deg)"></span>
+            <h2 style="margin:32px 0 0;font-family:Montserrat,sans-serif;font-weight:600;font-size:28px;color:#153B68">Thank you, {{ form.name }}.</h2>
+            <p style="margin:16px auto 0;max-width:380px;font-size:16px;line-height:1.7;color:#4A5566">Your enquiry has been received. A partner will be in touch shortly.</p>
+            <button onClick="{{ resetForm }}" style="margin-top:32px;font-family:Montserrat,sans-serif;font-weight:600;font-size:14px;color:#153B68;background:none;border:1px solid #153B68;padding:14px 24px;border-radius:2px;cursor:pointer">Send another enquiry</button>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+</sc-if>
+
+<!-- Final CTA (all pages except contact) -->
+<sc-if value="{{ showCta }}" hint-placeholder-val="{{ true }}">
+  <section aria-labelledby="cta-h" style="background:#153B68;position:relative;overflow:hidden">
+    <div style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(176,154,103,0.18);pointer-events:none"></div>
+    <div data-reveal="1" style="position:relative;max-width:960px;margin:0 auto;padding:clamp(88px,11vw,144px) clamp(20px,4vw,48px);text-align:center">
+      <span style="display:block;width:14px;height:14px;margin:0 auto;background:#B09A67;transform:rotate(45deg)"></span>
+      <h2 id="cta-h" style="margin:36px 0 0;font-family:Montserrat,sans-serif;font-weight:600;font-size:clamp(32px,4.4vw,56px);line-height:1.12;letter-spacing:-.02em;color:#FFFFFF;text-wrap:balance">Ready to Strengthen Strategy, Culture and Capability?</h2>
+      <p style="margin:28px auto 0;max-width:620px;font-size:18px;line-height:1.7;color:rgba(255,255,255,0.86)">Partner with IH Advisory to navigate change, strengthen leadership and deliver sustainable organisational outcomes.</p>
+      <a href="#" onClick="{{ goContact }}" style="display:inline-block;margin-top:44px;font-family:Montserrat,sans-serif;font-weight:600;font-size:15px;color:#0F2A4A;background:#B09A67;padding:19px 34px;border-radius:2px" style-hover="background:#C9B68A;color:#0F2A4A">Contact IH Advisory</a>
+    </div>
+  </section>
+</sc-if>
+
+</main>
+
+<!-- FOOTER -->
+<footer style="background:#0C2240;color:rgba(255,255,255,0.8)">
+  <div style="max-width:1280px;margin:0 auto;padding:80px clamp(20px,4vw,48px) 40px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:48px">
+      <div style="grid-column:span 2;min-width:0;max-width:440px">
+        <img src="./assets/ih-logo.png" alt="IH Advisory" style="height:44px;width:auto;display:block;filter:brightness(0) invert(1)">
+        <p style="margin:28px 0 0;font-size:15px;line-height:1.7">Trusted Advice. Practical Expertise. Real Results. A 100% Indigenous and Veteran owned consultancy, proudly based in the Northern Territory.</p>
+      </div>
+      <div>
+        <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#C9B68A">Services</div>
+        <ul style="list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column;gap:10px">
+          <sc-for list="{{ services }}" as="s" hint-placeholder-count="5">
+            <li><a href="#" onClick="{{ s.go }}" style="font-size:14.5px;color:rgba(255,255,255,0.82)" style-hover="color:#C9B68A">{{ s.title }}</a></li>
+          </sc-for>
+        </ul>
+      </div>
+      <div>
+        <div style="font-family:Montserrat,sans-serif;font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#C9B68A">Company</div>
+        <ul style="list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column;gap:10px">
+          <li><a href="#" onClick="{{ goAbout }}" style="font-size:14.5px;color:rgba(255,255,255,0.82)" style-hover="color:#C9B68A">About</a></li>
+          <li><a href="#" onClick="{{ goMichelle }}" style="font-size:14.5px;color:rgba(255,255,255,0.82)" style-hover="color:#C9B68A">Michelle Ivers</a></li>
+          <li><a href="#" onClick="{{ goPat }}" style="font-size:14.5px;color:rgba(255,255,255,0.82)" style-hover="color:#C9B68A">Pat Hay</a></li>
+          <li><a href="#" onClick="{{ goInsights }}" style="font-size:14.5px;color:rgba(255,255,255,0.82)" style-hover="color:#C9B68A">Insights</a></li>
+          <li><a href="#" onClick="{{ goContact }}" style="font-size:14.5px;color:rgba(255,255,255,0.82)" style-hover="color:#C9B68A">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:64px;padding:28px 0;border-top:1px solid rgba(255,255,255,0.14);border-bottom:1px solid rgba(255,255,255,0.14);font-size:14px;line-height:1.7;color:rgba(255,255,255,0.75);max-width:900px">IH Advisory acknowledges the Traditional Custodians of Country throughout the Northern Territory and Australia, and pays respect to Elders past and present.</div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;margin-top:28px;font-size:13px;color:rgba(255,255,255,0.6)">
+      <span>© 2026 IH Advisory. All rights reserved.</span>
+      <span>Strategy | Culture | Capability</span>
+    </div>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroLayout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Full-bleed image&quot;,&quot;Split&quot;],&quot;default&quot;:&quot;Full-bleed image&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showTestimonials&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;animations&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const SERVICES = [
+  { id:'strategic-advisory', pillar:'Strategy', title:'Strategic Business Advisory',
+    short:'Clear direction, sound governance and the structures to deliver it.',
+    items:['Strategic Planning','Business Improvement','Organisational Reviews','Governance','Change Management','Business Transformation','Program Management','Independent Reviews'],
+    overview:'We help boards and executive teams set direction, test assumptions and build the governance and structures needed to deliver. Our advice is independent, evidence-based and designed to be implemented.',
+    challenges:['Unclear priorities or a strategy that isn’t translating into action','Structures and processes that no longer fit the organisation','Governance or accountability gaps','Major change or transformation that has stalled'],
+    outcomes:['A clear, owned strategic direction','Fit-for-purpose structures and governance','Measurable performance improvement','Change delivered and embedded'] },
+  { id:'people-culture', pillar:'Culture', title:'People & Culture',
+    short:'Workforce, HR and culture advice that helps people do their best work.',
+    items:['HR Advisory','Workforce Planning','Organisational Design','Performance Management','Leadership Development','Employee Engagement','HR Reviews','Recruitment Support','Workplace Investigations & Conflict Resolution'],
+    overview:'Your people are your most important asset. We work alongside leaders and HR teams to plan the workforce you need, design effective organisations and build cultures where people stay, grow and perform.',
+    challenges:['Attracting and retaining talent, particularly in regional areas','Low engagement, high turnover or culture concerns','HR systems and policies that need review','Leaders who need support to manage performance'],
+    outcomes:['A workforce plan aligned to strategy','Stronger engagement and retention','Capable, confident people leaders','HR practice that is fair, compliant and effective'] },
+  { id:'investigations', pillar:'Culture', title:'Workplace Investigations & Conflict Resolution',
+    short:'Independent, procedurally fair processes that resolve issues and restore relationships.',
+    items:['Workplace Investigations','Mediation','Conflict Resolution','Procedural Fairness','Misconduct Matters','Relationship Restoration','Fact Finding'],
+    overview:'When workplace issues arise, an independent and impartial process protects your people and your organisation. We conduct investigations and mediations with rigour and sensitivity, then help teams move forward.',
+    challenges:['Complaints, grievances or allegations of misconduct','Entrenched conflict within or between teams','Breakdowns in working relationships','Matters requiring independent, defensible findings'],
+    outcomes:['Timely, defensible and fair outcomes','Reduced legal and reputational risk','Restored working relationships','Insight into root causes to prevent recurrence'] },
+  { id:'operational-leadership', pillar:'Capability', title:'Management Advice & Operational Leadership',
+    short:'Experienced leaders who step in, steady the ship and drive improvement.',
+    items:['Interim Executive Leadership','Senior Management Support','Operational Improvement','Leadership Transition','Management Mentoring','Delivery & Implementation'],
+    overview:'Sometimes the most valuable advice is an experienced leader in the room. Our partners step into interim and operational roles to maintain momentum, lift performance and support teams through periods of change.',
+    challenges:['Unplanned executive vacancies or leadership transitions','Operations that are under pressure or underperforming','New managers who need experienced guidance','Recommendations that need hands-on delivery'],
+    outcomes:['Continuity of leadership and decision-making','Improved operational performance','Smoother leadership transitions','Stronger in-house management capability'] },
+  { id:'facilitation', pillar:'Capability', title:'Facilitation & Development',
+    short:'Workshops and sessions that build alignment, capability and momentum.',
+    items:['Strategic Workshops','Leadership Workshops','Team Development','Stakeholder Consultation','Organisational Change Facilitation'],
+    overview:'We design and facilitate sessions that bring the right people together to make decisions, solve problems and build capability — from executive strategy days to stakeholder consultation and team development.',
+    challenges:['Leadership teams that need to align on direction','Teams working through change or conflict','Complex stakeholder groups requiring consultation','Development needs across leaders and teams'],
+    outcomes:['Shared understanding and clear decisions','More cohesive, effective teams','Genuine stakeholder input and buy-in','Practical action plans people own'] }
+];
+
+const PARTNERS = {
+  michelle: { key:'michelle', name:'Michelle Ivers', first:'Michelle', role:'Partner', slot:'partner-michelle', slotLabel:'Executive portrait — Michelle Ivers',
+    tagline:'Organisational change & workforce transformation',
+    quote:'Good advice must be practical, achievable and make a meaningful difference.',
+    expertise:['Organisational Change','Workforce Transformation','Strategic Reform','Executive Leadership','HR & Employee Relations'],
+    highlights:['Senior executive and leadership roles across the Northern Territory Government','Experience across health, defence, construction, utilities and community services','Career spanning HR, organisational development, strategic reform and operations','Equally at home in executive strategy and hands-on operational leadership'],
+    focus:['Organisational reviews','Workforce transformation','Change management','Employee relations','Leadership development','Interim executive leadership'],
+    bio:['Michelle is an accomplished senior executive, management consultant and organisational change specialist with extensive experience leading people, programs and complex transformation initiatives across government, private enterprise and not-for-profit sectors.',
+      'With a career spanning human resources, organisational development, strategic reform and operational leadership, Michelle brings a unique combination of strategic insight and hands-on management experience. She has held senior executive and leadership positions across the Northern Territory Government and has worked with organisations in the health, defence, construction, utilities and community services sectors.',
+      'Michelle specialises in helping organisations navigate complex challenges, strengthen leadership capability, improve organisational performance and implement meaningful change. Her expertise encompasses strategic and operational management, organisational reviews, workforce transformation, employee relations, leadership development and change management.',
+      'Known for her pragmatic, collaborative and outcomes-focused approach, Michelle has a proven ability to quickly understand complex operating environments, build trusted relationships and deliver practical solutions. She is equally comfortable working with executive teams on strategic priorities as she is stepping into operational leadership roles to drive improvements and support teams through periods of change.',
+      'Michelle is passionate about developing capable leaders, building effective teams and creating workplaces where people and organisations can thrive. She brings integrity, sound judgement and a genuine commitment to achieving sustainable outcomes to every engagement.',
+      'Michelle’s philosophy is simple: good advice must be practical, achievable and make a meaningful difference.'] },
+  pat: { key:'pat', name:'Pat Hay', first:'Pat', role:'Partner', slot:'partner-pat', slotLabel:'Executive portrait — Pat Hay',
+    tagline:'Organisational behaviour & workforce strategy',
+    quote:'When your workforce thrives, your organisation thrives.',
+    expertise:['Organisational Behaviour','Workforce Strategy','Leadership Capability','Workforce Transformation','Cultural Alignment'],
+    highlights:['Former Commissioned Army Officer','Senior roles across State Government and the private sector','Directly led teams of up to 150 personnel','Managed complex, geographically dispersed regional workforces'],
+    focus:['Behavioural and cultural diagnostics','Workforce strategy and logistics','Workplace conflict and friction','Regional talent pipelines','Community and diversity pathways','Leadership capability'],
+    bio:['Pat is an Organisational Behaviour and Workforce Strategy specialist. With decades of leadership and strategic human resources experience, he has the skills to decode the human dynamics that drive organisational success. By bridging the gap between how people think and how organisations perform, Pat moves beyond generic HR fixes to uncover, analyse and optimise workplace behaviour. His tailored behavioural insights improve productivity, resolve structural friction, transform culture and elevate leadership capability — naturally driving job satisfaction and long-term retention.',
+      'With a distinguished career as a Commissioned Army Officer and senior roles across State Government and the private sector, Pat brings superior analytical and problem-solving skills perfected in highly demanding operational environments. He is a proven authority in navigating large-scale organisational change, continuous improvement initiatives and deep-seated workplace conflict. Having managed complex, geographically dispersed workforces and directly supervised teams of up to 150 personnel, Pat knows how to unlock human potential and keep diverse teams aligned under time-critical or high-pressure conditions.',
+      'At the core of Pat’s expertise is a dual mastery of cultural alignment and practical workforce logistics. He specialises in breaking down workplace friction by diagnosing the behavioural root causes beneath the surface rather than treating symptoms. This people-centric approach allows organisations to undergo critical transformations with minimal workforce disruption. His experience managing regional talent pipelines, leading rapid staffing re-alignments and delivering tailored community and diversity pathways connects high-level HR strategy directly with front-line execution.',
+      'Pat’s philosophy is simple. He firmly believes your people are your most important asset. When your workforce thrives, your organisation thrives.'] }
+};
+
+const PIC = (seed, w, h) => `https://picsum.photos/seed/${seed}/${w}/${h}`;
+const SERVICE_DETAIL = {
+  'strategic-advisory': 'Whether you are setting a new direction, reviewing how your organisation is structured or recovering a transformation that has lost momentum, we bring an independent view and the practical experience to make it work. Engagements range from focused independent reviews to multi-year program support.',
+  'people-culture': 'We combine strategic HR expertise with deep operational experience across government, Defence and regional industry. That means advice that works in the real conditions your managers face — including the particular challenges of attracting and keeping people in the Territory.',
+  'investigations': 'Our partners have managed complex workplace matters across large public and private organisations. We provide a timely, impartial process with clear, well-reasoned findings — and, where appropriate, support to rebuild trust once the matter is resolved.',
+  'operational-leadership': 'Our partners have held senior executive and command roles, and are comfortable stepping directly into the organisation. We provide steady leadership, keep the work moving and leave your team stronger and more capable when we step out.',
+  'facilitation': 'Every session is designed around a clear purpose and outcome. We prepare thoroughly, create space for honest conversation and make sure decisions are captured and owned — so momentum continues long after the workshop ends.'
+};
+const ARTICLES = [
+  { id:'change-programs-stall', category:'Strategy', service:'strategic-advisory', author:'michelle', date:'28 October 2026', read:'6 min read',
+    title:'Why change programs stall — and how to keep yours moving',
+    excerpt:'Most transformations don’t fail at the planning stage. They lose momentum in the months that follow. Here is what we see, and what helps.',
+    intro:'Few organisations lack a plan for change. What they often lack is the sustained attention, clear ownership and practical support needed to carry that plan through the inevitable disruption of day-to-day operations.',
+    sections:[{h:'Ownership fades after launch',p:'Programs are typically launched with energy and executive sponsorship. Six months later, sponsors have moved on to the next priority and accountability has drifted. Naming a single accountable owner, with time genuinely set aside, is one of the simplest and most effective safeguards.'},
+      {h:'The plan doesn’t match operational reality',p:'Change designed at a distance from the front line often underestimates workload, capability and local constraints. Testing the plan early with the people who will deliver it surfaces problems while they are still cheap to fix.'},
+      {h:'Progress isn’t visible',p:'When people can’t see progress, they assume there isn’t any. A small number of meaningful measures, reported consistently, builds confidence and helps leaders intervene early when things slip.'}],
+    pull:'A strategy is only as good as the organisation’s capacity to deliver it.' },
+  { id:'regional-workforce', category:'People & Culture', service:'people-culture', author:'pat', date:'14 October 2026', read:'7 min read',
+    title:'Building a regional workforce pipeline in the Northern Territory',
+    excerpt:'Attracting and retaining talent outside the major centres requires more than competitive pay. It requires a long-term, community-connected approach.',
+    intro:'For many Territory organisations, workforce is the single biggest constraint on growth. Vacancies stay open for months, turnover is high and recruitment from interstate is expensive and uncertain.',
+    sections:[{h:'Start with the local community',p:'The most sustainable pipelines are built locally. Partnerships with schools, training providers and community organisations — including tailored pathways for Aboriginal and Torres Strait Islander people — create a workforce with genuine roots in the region.'},
+      {h:'Design roles people can stay in',p:'Retention depends on more than the job itself. Flexible rostering, clear career paths and visible investment in development all signal that the organisation is a long-term option, not a stepping stone.'},
+      {h:'Plan ahead, not just for today’s vacancies',p:'Workforce planning linked to strategy allows organisations to anticipate need, build capability early and avoid the cycle of reactive, high-cost recruitment.'}],
+    pull:'Your people are your most important asset. Plan for them accordingly.' },
+  { id:'procedural-fairness', category:'Workplace Relations', service:'investigations', author:'michelle', date:'30 September 2026', read:'5 min read',
+    title:'Procedural fairness in workplace investigations: getting the basics right',
+    excerpt:'A fair process protects everyone involved — and makes the outcome far more likely to stand up to scrutiny.',
+    intro:'When a complaint or allegation arises, the pressure to act quickly is understandable. But the quality of the process matters as much as the outcome, both for the people involved and for the organisation’s risk.',
+    sections:[{h:'Be clear about the allegations',p:'Respondents must understand precisely what is alleged so they can respond meaningfully. Vague or shifting allegations undermine fairness and the credibility of any findings.'},
+      {h:'Ensure the decision-maker is impartial',p:'Investigators and decision-makers should have no conflict of interest and should be seen to approach the matter with an open mind. Where that is difficult internally, an independent investigator is often the right choice.'},
+      {h:'Give a genuine opportunity to respond',p:'Every party should have a fair chance to put their side, provide evidence and comment on adverse material before conclusions are reached. Findings should then be clearly reasoned from the evidence.'}],
+    pull:'Fair process is not a formality. It is what makes the outcome trustworthy.' },
+  { id:'culture-root-causes', category:'People & Culture', service:'people-culture', author:'pat', date:'16 September 2026', read:'6 min read',
+    title:'Treating causes, not symptoms: diagnosing workplace culture',
+    excerpt:'Engagement surveys and policy changes rarely fix a culture problem on their own. Understanding the behaviour beneath the surface does.',
+    intro:'Low morale, conflict and turnover are often treated as problems in themselves. In our experience they are usually symptoms of something structural or behavioural that hasn’t yet been named.',
+    sections:[{h:'Look at the system, not just individuals',p:'Workload, reporting lines, incentives and unclear roles shape behaviour far more than most organisations recognise. Fixing the system often resolves friction that looked like a personality clash.'},
+      {h:'Listen widely and confidentially',p:'People will tell you what is really happening if they trust the process. Structured, confidential conversations across levels give a far richer picture than survey data alone.'},
+      {h:'Act visibly on what you learn',p:'Diagnosis without action damages trust. A small number of visible, well-communicated changes shows people their input mattered.'}],
+    pull:'When your workforce thrives, your organisation thrives.' },
+  { id:'interim-leadership', category:'Leadership', service:'operational-leadership', author:'michelle', date:'2 September 2026', read:'4 min read',
+    title:'When to bring in an interim executive',
+    excerpt:'An experienced interim leader can provide stability, momentum and fresh perspective at a critical time. Here is when it makes sense.',
+    intro:'Leadership gaps rarely arrive at a convenient time. A sudden departure, a period of rapid change or a struggling business unit can all leave an organisation exposed.',
+    sections:[{h:'During unplanned transitions',p:'An interim executive maintains decision-making and stakeholder confidence while a permanent appointment is made properly — rather than rushed.'},
+      {h:'When performance needs to turn around',p:'Experienced interim leaders can diagnose issues quickly, make difficult calls without long-term political baggage and set the area up for success.'},
+      {h:'To deliver a specific change',p:'Where a defined transformation or reform needs dedicated senior leadership, an interim role provides focus and expertise for exactly as long as it is needed.'}],
+    pull:'The best interim leaders leave the organisation more capable than they found it.' },
+  { id:'strategy-days', category:'Strategy', service:'facilitation', author:'pat', date:'19 August 2026', read:'5 min read',
+    title:'Making your next strategy day count',
+    excerpt:'Too many strategy sessions end with a full whiteboard and no change. A few disciplined choices make the difference.',
+    intro:'Bringing a leadership team together for a day is a significant investment. The value lies not in the conversation itself, but in the decisions and commitments that follow.',
+    sections:[{h:'Define the decisions in advance',p:'Be clear about what the session must resolve. A focused agenda built around two or three key decisions is far more productive than a broad discussion.'},
+      {h:'Prepare the evidence',p:'Short, well-prepared briefing material allows the group to spend its time on judgement rather than on establishing the facts.'},
+      {h:'Leave with owners and dates',p:'Every agreed action should have an owner and a date before people leave the room — and a follow-up already scheduled.'}],
+    pull:'A good workshop ends with decisions people own, not a list of ideas.' }
+];
+const CATS = ['All', 'Strategy', 'People & Culture', 'Workplace Relations', 'Leadership'];
+const INDUSTRIES = ['Government','Defence','Mining','Construction','Healthcare','Community Services','Tourism','Not-for-Profit','Private Enterprise'];
+const pad = n => String(n).padStart(2,'0');
+
+class Component extends DCLogic {
+  state = { page: 'home', menuOpen: false, w: typeof window !== 'undefined' ? window.innerWidth : 1280, scrolled: false,
+    form: { name:'', org:'', email:'', phone:'', service:'General enquiry', message:'' }, errors: {}, sent: false };
+
+  componentDidMount() {
+    try { const p = localStorage.getItem('ih-page'); if (p) this.setState({ page: p }); } catch (e) {}
+    this.onResize = () => this.setState({ w: window.innerWidth });
+    this.onScroll = () => { const s = window.scrollY > 8; if (s !== this.state.scrolled) this.setState({ scrolled: s }); };
+    window.addEventListener('resize', this.onResize);
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    setTimeout(() => this.setupReveal(), 150);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('scroll', this.onScroll);
+    this.io && this.io.disconnect();
+  }
+  componentDidUpdate(prev, prevState) {
+    if (prevState.page !== this.state.page) setTimeout(() => this.setupReveal(), 60);
+  }
+  setupReveal() {
+    if (this.props.animations === false || !('IntersectionObserver' in window)) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    this.io && this.io.disconnect();
+    this.io = new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'none'; this.io.unobserve(e.target); }
+    }), { rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll('[data-reveal]').forEach(el => {
+      if (el.dataset.revealed) return;
+      el.dataset.revealed = '1';
+      if (el.getBoundingClientRect().top < window.innerHeight) return;
+      el.style.transition = 'opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1)';
+      el.style.opacity = '0'; el.style.transform = 'translateY(28px)';
+      this.io.observe(el);
+    });
+  }
+  go(page, anchor) {
+    return (e) => {
+      if (e && e.preventDefault) e.preventDefault();
+      try { localStorage.setItem('ih-page', page); } catch (err) {}
+      const same = page === this.state.page;
+      this.setState({ page, menuOpen: false, subOpen: false }, () => {
+        setTimeout(() => {
+          const el = anchor && document.getElementById(anchor);
+          if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 84, behavior: same ? 'smooth' : 'auto' });
+          else window.scrollTo({ top: 0, behavior: same ? 'smooth' : 'auto' });
+        }, 40);
+      });
+    };
+  }
+  setField(k) {
+    return (e) => { const v = e.target.value; this.setState(s => ({ form: { ...s.form, [k]: v }, errors: { ...s.errors, [k]: undefined } })); };
+  }
+
+  renderVals() {
+    const { page, w, menuOpen, scrolled, form, errors, sent } = this.state;
+    const narrow = w < 1100;
+    const gold = '#B09A67', none = 'transparent';
+    const isPartner = page === 'michelle' || page === 'pat';
+    const isService = page.startsWith('service:');
+    const isArticle = page.startsWith('article:');
+    const photo = k => PIC('ih-portrait-' + k, 800, 1000);
+    const artCard = (a) => ({ ...a, author: PARTNERS[a.author].name, image: PIC('ih-art-' + a.id, 1200, 750), thumb: PIC('ih-art-' + a.id, 400, 400), go: this.go('article:' + a.id) });
+    const services = SERVICES.map((s, i) => ({
+      ...s, num: pad(i + 1),
+      preview: s.items.slice(0, 5),
+      more: s.items.length > 5 ? `+ ${s.items.length - 5} more` : '',
+      image: PIC('ih-svc-' + s.id, 1200, 900),
+      navBg: page === 'service:' + s.id ? '#F8F8F6' : '#FFFFFF',
+      go: this.go('service:' + s.id),
+      enquire: (e) => { this.setState(st => ({ form: { ...st.form, service: s.title } })); this.go('contact')(e); }
+    }));
+    let sv = {};
+    if (isService) {
+      const base = services.find(s => 'service:' + s.id === page) || services[0];
+      const arts = ARTICLES.filter(a => a.service === base.id).map(artCard);
+      sv = { ...base, detail: SERVICE_DETAIL[base.id], slot: 'svc-' + base.id, slotLabel: 'Photo — ' + base.title,
+        challengeList: base.challenges.map((t, i) => ({ text: t, num: pad(i + 1) })),
+        articles: arts, hasArticles: arts.length > 0, others: services.filter(s => s.id !== base.id) };
+    }
+    const cat = this.state.cat || 'All';
+    const filtered = ARTICLES.filter(a => cat === 'All' || a.category === cat).map(artCard);
+    let art = {};
+    if (isArticle) {
+      const raw = ARTICLES.find(a => 'article:' + a.id === page) || ARTICLES[0];
+      art = { ...artCard(raw), slot: 'art-' + raw.id, image: PIC('ih-art-' + raw.id, 1800, 770), authorPhoto: photo(raw.author), authorGo: this.go(raw.author),
+        related: ARTICLES.filter(a => a.id !== raw.id).slice(0, 3).map(artCard) };
+    }
+    const partners = ['michelle', 'pat'].map(k => ({ ...PARTNERS[k], photo: photo(k), go: this.go(k) }));
+    let pp = {};
+    if (isPartner) {
+      const other = page === 'michelle' ? 'pat' : 'michelle';
+      pp = { ...PARTNERS[page], photo: photo(page), otherName: PARTNERS[other].name, otherGo: this.go(other) };
+    }
+    const submit = (e) => {
+      e.preventDefault();
+      const er = {};
+      if (!form.name.trim()) er.name = 'Please enter your name.';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) er.email = 'Please enter a valid email address.';
+      if (form.message.trim().length < 10) er.message = 'Please tell us a little about your enquiry.';
+      if (Object.keys(er).length) this.setState({ errors: er });
+      else { this.setState({ sent: true, errors: {} }); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    };
+    const errBorder = k => errors[k] ? '#A3322A' : '#D6D0C2';
+
+    return {
+      trustCols: w >= 1080 ? 'repeat(4,minmax(0,1fr))' : w >= 560 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      wide: !narrow, narrow, menuOpen, showMobileMenu: narrow && menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      navBorder: scrolled ? '#ECE8DE' : 'transparent',
+      navShadow: scrolled ? '0 8px 24px -16px rgba(15,42,74,0.25)' : 'none',
+      subOpen: !!this.state.subOpen,
+      openSub: () => { clearTimeout(this.subT); this.setState({ subOpen: true }); },
+      closeSub: () => { clearTimeout(this.subT); this.subT = setTimeout(() => this.setState({ subOpen: false }), 120); },
+      active: { home: page === 'home' ? gold : none, about: page === 'about' ? gold : none, services: (page === 'services' || isService) ? gold : none, partners: isPartner ? gold : none, insights: (page === 'insights' || isArticle) ? gold : none, contact: page === 'contact' ? gold : none },
+      isHome: page === 'home', isAbout: page === 'about', isServices: page === 'services', isPartner, isContact: page === 'contact',
+      isService, sv, isInsights: page === 'insights', isArticle, art,
+      goInsights: this.go('insights'),
+      cats: CATS.map(c => ({ label: c, on: c === cat, bg: c === cat ? '#B09A67' : 'transparent', color: c === cat ? '#0F2A4A' : '#FFFFFF', border: c === cat ? '#B09A67' : 'rgba(255,255,255,0.35)', pick: () => this.setState({ cat: c }) })),
+      featured: filtered[0] ? { ...filtered[0], bg: `url(${filtered[0].image})` } : {}, restArticles: filtered.slice(1),
+      showCta: page !== 'contact',
+      heroFull: (this.props.heroLayout ?? 'Full-bleed image') !== 'Split', heroSplit: this.props.heroLayout === 'Split',
+      showTestimonials: this.props.showTestimonials ?? true,
+      goHome: this.go('home'), goAbout: this.go('about'), goServices: this.go('services'), goContact: this.go('contact'),
+      goPartners: page === 'home' ? this.go('home', 'partners') : this.go('about', 'leadership'),
+      goMichelle: this.go('michelle'), goPat: this.go('pat'),
+      trust: [
+        { big: '60+ Years', small: 'Combined leadership & consulting experience', size: 'clamp(30px,3vw,40px)' },
+        { big: 'Indigenous Owned', small: 'Proudly Indigenous Australian owned', size: '22px' },
+        { big: 'Veteran Owned', small: 'Leadership built through service', size: '22px' },
+        { big: 'Cross-Sector', small: 'Government, Defence, Mining, Healthcare & more', size: '22px' }
+      ],
+      services,
+      why: [
+        { num: '01', title: 'Indigenous & Veteran Owned', text: 'A unique perspective grounded in integrity, accountability and service.', hasTags: false, tags: [] },
+        { num: '02', title: 'Strategy to Implementation', text: 'Not just recommendations. Practical delivery support that sees change through.', hasTags: false, tags: [] },
+        { num: '03', title: 'Cross-Sector Experience', text: 'More than 60 years of combined experience across:', hasTags: true, tags: ['Government','Defence','Mining','Construction','Healthcare','Tourism','Not-for-Profit'] },
+        { num: '04', title: 'Trusted Relationships', text: 'Focused on understanding our clients and delivering outcomes that are achievable.', hasTags: false, tags: [] }
+      ],
+      partners, pp,
+      industries: INDUSTRIES.map((name, i) => ({ name, num: pad(i + 1) })),
+      process: [
+        { title: 'Discover', text: 'Understand your organisation and challenges.' },
+        { title: 'Assess', text: 'Review systems, culture, leadership and performance.' },
+        { title: 'Strategise', text: 'Develop practical solutions and recommendations.' },
+        { title: 'Implement', text: 'Support execution and organisational change.' },
+        { title: 'Sustain', text: 'Build long-term capability and outcomes.' }
+      ].map((s, i) => ({ ...s, num: pad(i + 1) })),
+      testimonials: [
+        { quote: '[Client testimonial — two to three sentences describing the engagement, the challenge addressed and the outcome achieved.]', name: '[Client name]', role: '[Position], [Organisation]', sector: 'Government' },
+        { quote: '[Client testimonial — two to three sentences describing the engagement, the challenge addressed and the outcome achieved.]', name: '[Client name]', role: '[Position], [Organisation]', sector: 'Healthcare' },
+        { quote: '[Client testimonial — two to three sentences describing the engagement, the challenge addressed and the outcome achieved.]', name: '[Client name]', role: '[Position], [Organisation]', sector: 'Mining' }
+      ],
+      values: [
+        { title: 'Integrity', text: 'Honest, independent advice — even when it is difficult to hear.' },
+        { title: 'Accountability', text: 'We own our commitments and measure ourselves by outcomes.' },
+        { title: 'Service', text: 'Shaped by military and community service, we put clients and their people first.' },
+        { title: 'Respect', text: 'We listen first, and honour culture, Country and lived experience.' }
+      ].map((v, i) => ({ ...v, num: pad(i + 1) })),
+      framework: [
+        { title: 'Strategy', text: 'Set clear direction and build the structures to deliver it.', items: ['Strategic planning','Governance','Organisational reviews','Transformation'] },
+        { title: 'Culture', text: 'Create workplaces where people are engaged, aligned and treated fairly.', items: ['Engagement','Behaviour & alignment','Conflict resolution','Fair process'] },
+        { title: 'Capability', text: 'Grow the leaders, teams and systems that sustain results.', items: ['Leadership development','Workforce planning','Organisational design','Team development'] }
+      ].map((f, i) => ({ ...f, num: pad(i + 1) })),
+      form, errors, sent, notSent: !sent,
+      border: { name: errBorder('name'), email: errBorder('email'), message: errBorder('message') },
+      on: { name: this.setField('name'), org: this.setField('org'), email: this.setField('email'), phone: this.setField('phone'), service: this.setField('service'), message: this.setField('message') },
+      serviceOptions: ['General enquiry', ...SERVICES.map(s => s.title)],
+      submit,
+      resetForm: () => this.setState({ sent: false, form: { name:'', org:'', email:'', phone:'', service:'General enquiry', message:'' } })
+    };
+  }
+}
+</script>
+</body>
+</html>
